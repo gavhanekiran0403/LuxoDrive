@@ -1,0 +1,275 @@
+/* Global Reset & Font */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    background: #fff;
+}
+
+/* ----- Layout Wrapper ----- */
+.wrapper {
+    margin-left: 220px; /* space for sidebar */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* full height of viewport */
+}
+
+/* ----- Sidebar ----- */
+.sidebar {
+    width: 250px;
+    background: #2c3e50;
+    color: #ecf0f1;
+    height: 100vh;
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar .logo {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .menu li {
+    padding: 12px 20px;
+}
+
+.sidebar .menu li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar .menu li:hover {
+    background: #34495e;
+}
+
+/* ----- Topbar ----- */
+.topbar {
+    height: 60px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - 290px);
+    z-index: 100;
+}
+
+.search-box input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.username {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.logout-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    background: #e74c3c;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+    text-decoration: none;
+}
+
+/* ----- Main Content ----- */
+.main-content {
+    flex: 1;
+    padding: 80px 20px 20px; /* 80px = topbar height */
+    background: #f5f5f5;
+}
+
+/* -----Module Section----- */
+.module-container {
+  padding: 20px;
+  margin-left: 300px;
+  margin-top: 100px;
+}
+
+.module-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row */
+  gap: 20px; /* spacing between cards */
+}
+
+.column-content {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s ease;
+}
+
+.column-content:hover {
+  transform: translateY(-5px);
+}
+
+.image-section img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.image-section h5 {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Dashboard content area */
+
+.content {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  grid-auto-rows: 1fr;                   /* Automatic row height */
+  gap: 24px;
+  margin-left: 300px;
+  margin-top: 100px;
+}
+
+/* Dashboard heading (spans full width) */
+.heading-dashboard {
+  grid-column: 1 / -1; /* spans all columns */
+}
+.heading-dashboard h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  border-left: 6px solid #007bff;
+  padding-left: 12px;
+}
+
+/* -----------------------------
+   Card Styling
+----------------------------- */
+.card-section {
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px; /* ensures uniform height */
+}
+
+/* Hover effect */
+.card-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  opacity: 0.9;
+}
+
+/* Card body text */
+.card-body {
+  text-align: center;
+  padding: 24px;
+}
+.card-body h6 {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card-body h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.card-body a{
+	text-decoration: none;
+}
+
+/* --- Card Colors ---*/
+.card-section.users {
+    background: #007bff;  /* Blue */
+    color: #ffffff;        
+}
+.card-section.cars {
+    background: #28a745;  /* Green */
+    color: #ffffff;
+}
+.card-section.categories {
+    background: #fd7e14;  /* Orange */
+    color: #ffffff;
+}
+.card-section.owners {
+    background: #6f42c1;  /* Purple */
+    color: #ffffff;
+}
+.card-section.drivers {
+    background: #20c997;  /* Teal */
+    color: #ffffff;
+}
+.card-section.bookings {
+    background: #dc3545;  /* Red */
+    color: #ffffff;
+}
+
+.card-section.bankAccounts {
+    background: #808040;  /* Brown */
+    color: #ffffff;
+}
+
+/* Force all text inside cards to white for readability */
+.card-section h3,
+.card-section h6 {
+    color: #ffffff !important;
+}
+
+
+@media (max-width: 1200px) {
+  .content {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  }
+}
+
+@media (max-width: 992px) {
+  .content {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    grid-template-columns: 1fr; /* 1 card per row */
+    margin-left: 0;
+    margin-top: 20px;
+    padding: 16px;
+  }
+}

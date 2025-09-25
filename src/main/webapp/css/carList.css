@@ -1,0 +1,111 @@
+
+.list-container {
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+	margin-left:300px;
+	margin-top: 100px;
+	padding: 20px;
+	width: 75%;
+	overflow-x: auto; 
+}
+
+.header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+h1 {
+	position: absolute;
+	left: 45%;
+	color: black;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 15px;
+	text-decoration: none;
+	background: #28a745;
+	color: white;
+	border-radius: 5px;
+	font-weight: 500;
+}
+
+table {
+	width: 2000px;
+	border-collapse: collapse;
+	table-layout: fixed; 
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+th, td {
+	padding: 10px;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+th {
+	background: #f5f5f5;
+	font-weight: 500;
+}
+
+.link-update {
+	color: blue;
+	text-decoration: none;
+	margin: 0 5px;
+}
+
+.link-delete {
+	color: red;
+	text-decoration: none;
+	margin: 0 5px;
+}
+
+th:nth-child(1), td:nth-child(1)   { width: 5%; }   /* Car Id */
+th:nth-child(2), td:nth-child(2)   { width: 10%; }  /* Model Name */
+th:nth-child(3), td:nth-child(3)   { width: 10%; }  /* Car Number */
+th:nth-child(4), td:nth-child(4)   { width: 7%; }   /* Fuel Type */
+th:nth-child(5), td:nth-child(5)   { width: 5%; }   /* Seats */
+th:nth-child(6), td:nth-child(6)   { width: 8%; }   /* Rent */
+th:nth-child(7), td:nth-child(7)   { width: 6%; }  /* Year Model */
+th:nth-child(8), td:nth-child(8)   { width: 8%; }  /* Insurance No */
+th:nth-child(9), td:nth-child(9)   { width: 17%; }  /* Features */
+th:nth-child(10), td:nth-child(10) { width: 7%; }   /* Status */
+th:nth-child(11), td:nth-child(11),					/* Images1 */
+th:nth-child(12), td:nth-child(12),					/* Images2 */
+th:nth-child(13), td:nth-child(13),					/* Images3 */
+th:nth-child(14), td:nth-child(14) { width: 8%; }   /* Images4 */
+th:nth-child(15), td:nth-child(15) { width: 8%; }   /* Car Owner */
+th:nth-child(16), td:nth-child(16) { width: 11%; }  /* Action */
+
+/* Common alert box styling */
+.alert-box {
+  padding: 15px 20px;
+  margin: 15px auto;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Success message styling */
+.alert-box.success {
+  border: 2px solid #28a745;
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Error message styling */
+.alert-box.error {
+  border: 2px solid #dc3545;
+  background-color: #f8d7da;
+  color: #721c24;
+}

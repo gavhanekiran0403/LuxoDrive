@@ -1,0 +1,205 @@
+
+.list-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    width: 75%;
+    margin-left: 300px;
+    margin-top: 100px;
+    overflow-x: auto;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.header-row h1 {
+	position: absolute;
+	left: 45%;
+	color: black;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: green;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn:hover {
+    background: #45a049;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    min-width: 1500px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.view-bank{
+	text-decoration: none;
+}
+
+.view-bank:hover{
+	color: blue;
+}
+
+.view-cars{
+	text-decoration: none;
+}
+
+.view-cars:hover{
+	color: blue;
+}
+/* Links */
+.link-update {
+    color: blue;
+    text-decoration: none;
+    margin: 0 5px;
+}
+.link-delete {
+    color: red;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+/* Column widths (must total 100%) */
+
+th:nth-child(1), td:nth-child(1) { width: 7%; }  /* Owner Id */
+th:nth-child(2), td:nth-child(2) { width: 10%; }  /* Owner Name */
+th:nth-child(3), td:nth-child(3) { width: 10%; }  /* Phone */
+th:nth-child(4), td:nth-child(4) { width: 15%; }  /* Email */
+th:nth-child(5), td:nth-child(5) { width: 10%; }  /* Address */
+th:nth-child(6), td:nth-child(6) { width: 10%; }  /* Aadhar */
+th:nth-child(7), td:nth-child(7) { width: 10%; }  /* Bank */
+th:nth-child(8), td:nth-child(8) { width: 10%; }  /* Cars */
+th:nth-child(9), td:nth-child(9) { width: 15%; }  /* Action */
+
+th {
+    background: #f0f0f0;
+    font-weight: bold;
+}
+
+
+/* Bank Details css */
+
+.bank-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .bank-card {
+        background: #fff;
+        padding: 25px;
+        width: 350px;
+        border-radius: 12px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        margin-left: 250px;
+        position: fixed;
+    }
+    .bank-card h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+    .detail {
+        margin: 15px 0;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .detail span {
+        display: block;
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+    }
+    .detail strong {
+        font-size: 16px;
+        color: #2c3e50;
+    }
+    .btn-back {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px;
+        background: #3498db;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+    .btn-back:hover {
+        background: #2980b9;
+    }
+    
+/* Owner car List */
+
+.car-list-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    width: 50%;
+    margin-left: 450px;
+    margin-top: 100px;
+}
+
+.car-header-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.heading-car {
+   	left: 45%;
+    color: #333;
+}
+
+.car-list-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    min-width: 750px;
+}
+
+.car-list-table th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+/* /* Adjusted column widths */
+.col-id        { width: 8%; }   Car Id
+.col-model     { width: 30%; }  Model Name
+.col-number    { width: 27%; }  Car Number
+.col-insurance { width: 15%; }  Insurance Number
+.col-image     { width: 20%; }  Image */
+
+/* Column widths (must total 100%) */
+th:nth-child(1), td:nth-child(1) { width: 10%; }   /* Car Id */
+th:nth-child(2), td:nth-child(2) { width: 20%; }  /* Model Name */
+th:nth-child(3), td:nth-child(3) { width: 20%; }  /* Car Number */
+th:nth-child(4), td:nth-child(4) { width: 30%; }  /* Insurance Number */
+th:nth-child(5), td:nth-child(5) { width: 25%; }  /* Image */
+
+.car-list-table img {
+    border-radius: 6px;
+    max-width: 100px;
+    height: auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+    
