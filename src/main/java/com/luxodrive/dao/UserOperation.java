@@ -26,9 +26,7 @@ public class UserOperation {
         	ps.setString(7, user.getStatus() != null ? user.getStatus() : "offline");
 
             row = ps.executeUpdate();
-            System.out.println("✅ User registered successfully: " + user.getEmail());
-           
-
+        
         } catch (Exception e) {
             e.printStackTrace();
          }
