@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class UserOperation {
 
-    // Register a new user
+	// Register a new user
     public static  int registerUser(User user) {
     	int row = 0;
         try (Connection con = DBConnection.getConnection()) {
@@ -51,17 +51,18 @@ public class UserOperation {
             			rs.getString("confirmpassword"),
             			rs.getString("role"),
             			rs.getString("status")
-            			);
-            	
-            	
-              
-                 
+            			); 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return user;
     }
+
+	public static User getUserById(int userId) {
+	
+		return null;
+	}
 
     // Fetch all users (for admin dashboard)
 //    public List<User> getAllUsers() {
