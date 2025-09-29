@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserOperation {
 
-    // Register a new user
+	// Register a new user
     public static  int registerUser(User user) {
     	int row = 0;
         try (Connection con = DBConnection.getConnection()) {
@@ -52,11 +52,7 @@ public class UserOperation {
             			rs.getString("confirmpassword"),
             			rs.getString("role"),
             			rs.getString("status")
-            			);
-            	
-            	
-              
-                 
+            			); 
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,6 +86,32 @@ public class UserOperation {
         return users;
     }
     
+    public static User getUserById(int userId) {
+    	User user = null;
+    	try (Connection con = DBConnection.getConnection()) {
+            String sql = "SELECT * FROM users WHERE user_id = ?";
+            PreparedStatement psmt = con.prepareStatement(sql);
+            psmt.setInt(1, userId);
+            ResultSet rs = psmt.executeQuery();
+
+            while (rs.next()) {
+                user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone_no"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("confirmpassword"),
+                        rs.getString("role"),
+                        rs.getString("status")
+                );
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
     public static boolean deleteUser(int userId) {
         boolean status = false;
         try (Connection con = DBConnection.getConnection()) {
