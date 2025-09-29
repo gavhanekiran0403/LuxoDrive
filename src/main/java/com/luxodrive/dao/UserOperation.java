@@ -5,10 +5,12 @@ import com.luxodrive.jdbc.connection.DBConnection;
 import com.luxodrive.model.Login;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserOperation {
 
-    // Register a new user
+	// Register a new user
     public static  int registerUser(User user) {
     	int row = 0;
         try (Connection con = DBConnection.getConnection()) {
@@ -24,8 +26,7 @@ public class UserOperation {
         	ps.setString(7, user.getStatus() != null ? user.getStatus() : "offline");
 
             row = ps.executeUpdate();
-           
-
+        
         } catch (Exception e) {
             e.printStackTrace();
          }
@@ -51,11 +52,7 @@ public class UserOperation {
             			rs.getString("confirmpassword"),
             			rs.getString("role"),
             			rs.getString("status")
-            			);
-            	
-            	
-              
-                 
+            			); 
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,32 +60,70 @@ public class UserOperation {
         return user;
     }
 
-    // Fetch all users (for admin dashboard)
-//    public List<User> getAllUsers() {
-//        List<User> list = new ArrayList<>();
-//        try (Connection con = DBConnection.getConnection()) {
-//            String sql = "SELECT * FROM users";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//
-//            while (rs.next()) {
-//                User u;
-//                String role = rs.getString("role");
-//                if ("admin".equalsIgnoreCase(role)) {
-//                    u = new Admin();
-//                } else {
-//                    u = new User();
-//                }
-//                u.setId(rs.getInt("user_id"));
-//                u.setFullName(rs.getString("full_name"));
-//                u.setPhone(rs.getString("phone_no"));
-//                u.setEmail(rs.getString("email"));
-//                u.setRole(role);
-//                list.add(u);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
+    public static List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection()) {
+            String sql = "SELECT * FROM users";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone_no"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("confirmpassword"),
+                        rs.getString("role"),
+                        rs.getString("status")
+                );
+                users.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+    
+    public static User getUserById(int userId) {
+    	User user = null;
+    	try (Connection con = DBConnection.getConnection()) {
+            String sql = "SELECT * FROM users WHERE user_id = ?";
+            PreparedStatement psmt = con.prepareStatement(sql);
+            psmt.setInt(1, userId);
+            ResultSet rs = psmt.executeQuery();
+
+            while (rs.next()) {
+                user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone_no"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("confirmpassword"),
+                        rs.getString("role"),
+                        rs.getString("status")
+                );
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+    public static boolean deleteUser(int userId) {
+        boolean status = false;
+        try (Connection con = DBConnection.getConnection()) {
+            String sql = "DELETE FROM users WHERE user_id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userId);
+
+            int rows = ps.executeUpdate();
+            status = rows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
 }
