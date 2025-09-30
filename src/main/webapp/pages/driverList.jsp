@@ -55,8 +55,11 @@
 				<td>${driver.phoneNo}</td>
 				<td>${driver.email}</td>
 				<td>${driver.address}</td>
-				<td>${driver.bankAccount.accHolderName}</td>
-				
+				<%-- <td>${driver.bankAccount.accHolderName}</td>
+				 --%>
+				<td>
+   					 <a href="bankDetails.jsp?type=driver&id=${driver.driverId}" class="view-bank">View Bank Details</a>
+				</td>
 				<td>
 					   <a class="link-update" href="driverForm.jsp?driverId=${driver.driverId}">Update</a> | 
                         <a class="link-delete" href="delete.jsp?driverId=${driver.driverId}">Delete</a>
