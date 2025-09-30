@@ -8,14 +8,13 @@ public class Driver {
 	private String phoneNo;
 	private String email;
 	private String address;
-	private BankAccount bankAccount;
 	
 	public Driver() {
 		super();
 
 	}
 
-	public Driver(int driverId, String fullName, String licenseNo, String phoneNo, String email, String address, BankAccount bankAccount) {
+	public Driver(int driverId, String fullName, String licenseNo, String phoneNo, String email, String address) {
 		super();
 		this.driverId = driverId;
 		this.fullName = fullName;
@@ -23,7 +22,6 @@ public class Driver {
 		this.phoneNo = phoneNo;
 		this.email = email;
 		this.address = address;
-		this.bankAccount = bankAccount;
 	}
 
 	public int getDriverId() {
@@ -73,20 +71,11 @@ public class Driver {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	public BankAccount getBankAccount() {
-		return bankAccount;
-	}
-
-	public void setBankAccount(BankAccount bankAccount) {
-		this.bankAccount = bankAccount;
-	}
 
 	@Override
 	public String toString() {
 		return "Driver [driverId=" + driverId + ", fullName=" + fullName + ", licenseNo=" + licenseNo + ", phoneNo="
-				+ phoneNo + ", email=" + email + ", address=" + address + ", bankAccount="
-						+ bankAccount + "]";
+				+ phoneNo + ", email=" + email + ", address=" + address + "]";
 	}
 	
 }
