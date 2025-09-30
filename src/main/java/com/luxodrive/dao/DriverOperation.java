@@ -13,7 +13,7 @@ import com.luxodrive.model.Driver;
 
 public class DriverOperation {
 
-	public static List<Driver> getAllDriver() {
+	public static List<Driver> getAllDrivers() {
 		
 		List<Driver> drivers = new ArrayList<Driver>();
 		
@@ -23,12 +23,16 @@ public class DriverOperation {
 			ResultSet rs = stmt.executeQuery("SELECT * FROM drivers");
 			
 			while(rs.next()) {
-				/*
-				 * Driver driver = new Driver( rs.getInt("driver_id"),
-				 * rs.getString("full_name"), rs.getString("license_no"),
-				 * rs.getString("phone_no"), rs.getString("email"), rs.getString("address") );
-				 * drivers.add(driver);
-				 */
+				
+				  Driver driver = new Driver( 
+						 rs.getInt("driver_id"),
+						 rs.getString("full_name"), 
+						 rs.getString("license_no"),
+						 rs.getString("phone_no"), 
+						 rs.getString("email"), 
+						 rs.getString("address") );
+				  drivers.add(driver);
+				 
 			}
 			
 		} catch (Exception e) {
