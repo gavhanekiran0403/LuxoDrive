@@ -5,7 +5,6 @@
 
 <%
 
-    // Get driver parameters
     String driverIdStr = request.getParameter("driverId");
     int driverId = driverIdStr != null ? Integer.parseInt(driverIdStr) : 0;
 

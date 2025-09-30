@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Driver Form Page</title>
+<title>Driver Form </title>
 <link rel="stylesheet" type="text/css" href="../css/driverForm.css">
 </head>
 <body>

@@ -45,6 +45,7 @@
             System.out.println("Invalid ownerId format.");
         }
     }
+    //delete driver
     
     String driverIdStr = request.getParameter("driverId");
 
