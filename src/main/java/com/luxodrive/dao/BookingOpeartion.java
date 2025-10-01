@@ -152,4 +152,43 @@ public class BookingOpeartion {
 		}
 		return row;
 	}
+	public static List<Booking> getBookingsByUser(int userId) {
+	    List<Booking> bookings = new ArrayList<>();
+
+	    try (Connection conn = DBConnection.getConnection()) {
+	        String query = "SELECT * FROM bookings WHERE user_id = ?";
+	        PreparedStatement psmt = conn.prepareStatement(query);
+	        psmt.setInt(1, userId);
+
+	        ResultSet rs = psmt.executeQuery();
+	        while (rs.next()) {
+	            // Fetch user details
+	            User user = UserOperation.getUserById(userId);
+
+	            // Fetch car details
+	            int carId = rs.getInt("car_id");
+	            Car car = CarOperation.getCarById(carId);
+
+	            Booking booking = new Booking(
+	                rs.getInt("booking_id"),
+	                rs.getString("pickup_location"),
+	                rs.getString("drop_location"),
+	                rs.getString("pickup_date"),
+	                rs.getString("pickup_time"),
+	                rs.getString("return_date"),
+	                rs.getString("driving_option"),
+	                rs.getDouble("total_amount"),
+	                rs.getString("status"),
+	                user,
+	                car
+	            );
+	            bookings.add(booking);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return bookings;
+	}
+
 }

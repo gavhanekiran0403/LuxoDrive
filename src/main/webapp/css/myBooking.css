@@ -1,0 +1,105 @@
+.list-container {
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+	margin-left: 50px;
+	margin-top: 50px;
+	padding: 20px;
+	width: 90%;
+	overflow-x: auto;
+}
+
+.header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+h1 {
+	position: absolute;
+	left: 45%;
+	color: black;
+	margin-bottom: 80px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 15px;
+	text-decoration: none;
+	background: #28a745;
+	color: white;
+	border-radius: 5px;
+	font-weight: 500;
+}
+
+table {
+	width: 1600px;  /* booking table is smaller than car table */
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+th, td {
+	padding: 10px;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+th {
+	background: #f5f5f5;
+	font-weight: 500;
+}
+
+.link-update {
+	color: blue;
+	text-decoration: none;
+	margin: 0 5px;
+}
+
+.link-delete {
+	color: red;
+	text-decoration: none;
+	margin: 0 5px;
+}
+
+/* ✅ Column widths adjusted for booking table */
+th:nth-child(1), td:nth-child(1)   { width: 6%; }   /* Booking Id */
+th:nth-child(2), td:nth-child(2)   { width: 12%; }  /* Pickup Location */
+th:nth-child(3), td:nth-child(3)   { width: 12%; }  /* Drop Location */
+th:nth-child(4), td:nth-child(4)   { width: 10%; }  /* Pickup Date */
+th:nth-child(5), td:nth-child(5)   { width: 8%; }   /* Pickup Time */
+th:nth-child(6), td:nth-child(6)   { width: 10%; }  /* Return Date */
+th:nth-child(7), td:nth-child(7)   { width: 10%; }  /* Driving Option */
+th:nth-child(8), td:nth-child(8)   { width: 8%; }   /* Total Amount */
+th:nth-child(9), td:nth-child(9)   { width: 8%; }   /* Status */
+th:nth-child(10), td:nth-child(10) { width: 10%; }  /* Car */
+th:nth-child(11), td:nth-child(11) { width: 10%; }  /* Action */
+
+/* ✅ Alert message styling */
+.alert-box {
+  padding: 15px 20px;
+  margin: 15px auto;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.alert-box.success {
+  border: 2px solid #28a745;
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-box.error {
+  border: 2px solid #dc3545;
+  background-color: #f8d7da;
+  color: #721c24;
+}
