@@ -28,8 +28,9 @@
         <div class="signup-container">
             <h2>Create Account</h2>
             <!-- JSTL error message display -->
-    		<c:if test="${not empty signupErrorMsg}">
-        		<div class="custom-error">${signupErrorMsg}</div>
+    		<c:if test="${not empty sessionScope.signupErrorMsg}">
+        		<div class="custom-error">${sessionScope.signupErrorMsg}</div>
+        		<c:remove var="signupErrorMsg" scope="session"/>
     		</c:if>
             <form action="signupProcess.jsp" method="post">
                 <div class="form-page">

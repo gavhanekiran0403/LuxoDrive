@@ -50,31 +50,69 @@
                     <th>Pickup Time</th>
                     <th>Return Date</th>
                     <th>Driving Option</th>
+                    <th>Aadhar Card</th>
                     <th>Total Amount</th>
                     <th>Status</th>
                     <th>User</th>
                     <th>Car</th>
+                    <th>Driver</th>
                 </tr>
             </thead>
-            <tbody>
-                <c:forEach var="b" items="${bookings}">
-                    <tr>
-                        <td>${b.bookingId}</td>
-                        <td>${b.pickupLocation}</td>
-                        <td>${b.dropLocation}</td>
-                        <td>${b.pickupDate}</td>
-                        <td>${b.pickupTime}</td>
-                        <td>${b.returnDate}</td>
-                        <td>${b.drivingOption}</td>
-                        <td>${b.totalAmount}</td>
-                        <td>${b.status}</td>
-                        <td>${b.user.fullName}</td>
-                        <td>${b.car.modelName}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
+            <c:choose>
+        		<c:when test="${empty bookings }">
+        			<tbody>
+        				<tr>
+        					<td>
+        						Bookings details not available.
+        					</td>
+        				</tr>
+        			</tbody>
+        		</c:when>
+        		<c:otherwise>
+        			<tbody>
+                		<c:forEach var="booking" items="${bookings}">
+                    		<tr>
+                        		<td>${booking.bookingId}</td>
+                        		<td>${booking.pickupLocation}</td>
+                        		<td>${booking.dropLocation}</td>
+                        		<td>${booking.pickupDate}</td>
+                        		<td>${booking.pickupTime}</td>
+                        		<td>${booking.returnDate}</td>
+                        		<td>${booking.drivingOption}</td>
+                        		<td>
+                        			<c:choose>
+                        				<c:when test="${booking.drivingOption eq 'Self-Drive' }">
+                        					<!-- Thumbnail -->
+                        					<a href="viewImage.jsp?bookingId=${booking.bookingId}" target="_blank">
+                        						<img src="viewImage.jsp?bookingId=${booking.bookingId}" 
+                            	 					width="60" alt="Aadhar Card"/>
+                        					</a>
+                           				</c:when>
+                        				<c:otherwise>
+                        					 -
+                        				</c:otherwise>
+                        			</c:choose>
+                        		</td>
+                        		<td>${booking.totalAmount}</td>
+                        		<td>${booking.status}</td>
+                        		<td>${booking.user.fullName}</td>
+                        		<td>${booking.car.modelName}</td>
+                        		<td>
+                        			<c:choose>
+                                        <c:when test="${booking.drivingOption eq 'With-Driver'}">
+                                            ${booking.driver.fullName}
+                                        </c:when>
+                                        <c:otherwise>
+                                            -
+                                        </c:otherwise>
+                                    </c:choose>
+                        		</td>
+                    		</tr>
+                		</c:forEach>
+            		</tbody>
+        		</c:otherwise>
+        	</c:choose>
         </table>
     </div>
-
 </body>
 </html>

@@ -42,7 +42,8 @@ public class BookingOpeartion {
 						rs.getString("pickup_date"), 
 						rs.getString("pickup_Time"), 
 						rs.getString("return_date"), 
-						rs.getString("driving_option"), 
+						rs.getString("driving_option"),
+						rs.getBytes("aadhar_card"),
 						rs.getDouble("total_amount"), 
 						rs.getString("status"),
 						rs.getTimestamp("created_at"),
@@ -63,7 +64,7 @@ public class BookingOpeartion {
 		int generatedId = 0;
 		try(Connection conn = DBConnection.getConnection()){
 			String query = "INSERT INTO bookings(pickup_location, drop_location, pickup_date, pickup_Time, return_date, "
-					+ "driving_option, total_amount, status, user_id, car_id) values(?,?,?,?,?,?,?,?,?,?)";
+					+ "driving_option, aadhar_card, total_amount, status, user_id, car_id) values(?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement psmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			psmt.setString(1, booking.getPickupLocation());
 			psmt.setString(2, booking.getDropLocation());
@@ -71,10 +72,11 @@ public class BookingOpeartion {
 			psmt.setString(4, booking.getPickupTime());
 			psmt.setString(5, booking.getReturnDate());
 			psmt.setString(6, booking.getDrivingOption());
-			psmt.setDouble(7, booking.getTotalAmount());
-			psmt.setString(8, booking.getStatus());
-			psmt.setInt(9, booking.getUser().getUserId());
-			psmt.setInt(10, booking.getCar().getCarId());
+			psmt.setBytes(7, booking.getAadharCard());
+			psmt.setDouble(8, booking.getTotalAmount());
+			psmt.setString(9, booking.getStatus());
+			psmt.setInt(10, booking.getUser().getUserId());
+			psmt.setInt(11, booking.getCar().getCarId());
 			
 			int rows = psmt.executeUpdate();
 
@@ -96,7 +98,7 @@ public class BookingOpeartion {
 		int row = 0;
 		try(Connection conn = DBConnection.getConnection()){
 			String query = "UPDATE bookings SET pickup_location = ?, drop_location = ?, pickup_date = ?, pickup_Time = ?, return_date = ?, "
-					+ "driving_option = ?, total_amount = ?, status = ?, user_id = ?, car_id = ? WHERE booking_id = ?";
+					+ "driving_option = ?, aadhar_card = ?, total_amount = ?, status = ?, user_id = ?, car_id = ? WHERE booking_id = ?";
 			PreparedStatement psmt = conn.prepareStatement(query);
 			psmt.setString(1, booking.getPickupLocation());
 			psmt.setString(2, booking.getDropLocation());
@@ -104,11 +106,12 @@ public class BookingOpeartion {
 			psmt.setString(4, booking.getPickupTime());
 			psmt.setString(5, booking.getReturnDate());
 			psmt.setString(6, booking.getDrivingOption());
-			psmt.setDouble(7, booking.getTotalAmount());
-			psmt.setString(8, booking.getStatus());
-			psmt.setInt(9, booking.getUser().getUserId());
-			psmt.setInt(10, booking.getCar().getCarId());
-			psmt.setInt(11, booking.getBookingId());
+			psmt.setBytes(7, booking.getAadharCard());
+			psmt.setDouble(8, booking.getTotalAmount());
+			psmt.setString(9, booking.getStatus());
+			psmt.setInt(10, booking.getUser().getUserId());
+			psmt.setInt(11, booking.getCar().getCarId());
+			psmt.setInt(12, booking.getBookingId());
 			
 			row = psmt.executeUpdate();
 			
@@ -171,7 +174,8 @@ public class BookingOpeartion {
 						rs.getString("pickup_date"), 
 						rs.getString("pickup_Time"), 
 						rs.getString("return_date"), 
-						rs.getString("driving_option"), 
+						rs.getString("driving_option"),
+						rs.getBytes("aadhar_card"),
 						rs.getDouble("total_amount"), 
 						rs.getString("status"),
 						rs.getTimestamp("created_at"),
@@ -214,32 +218,77 @@ public class BookingOpeartion {
 	    }
 	}
 	
+	public static List<Booking> getBookingsByUser(int userId) {
+	    List<Booking> bookings = new ArrayList<>();
+
+	    try (Connection conn = DBConnection.getConnection()) {
+	        String query = "SELECT * FROM bookings WHERE user_id = ?";
+	        PreparedStatement psmt = conn.prepareStatement(query);
+	        psmt.setInt(1, userId);
+
+	        ResultSet rs = psmt.executeQuery();
+	        while (rs.next()) {
+	            
+	            User user = UserOperation.getUserById(userId);
+
+	            int carId = rs.getInt("car_id");
+	            Car car = CarOperation.getCarById(carId);
+
+	            int driverId = rs.getInt("driver_id");
+				Driver driver = DriverOperation.getDriverById(driverId);
+				
+	            Booking booking = new Booking(
+	                rs.getInt("booking_id"),
+	                rs.getString("pickup_location"),
+	                rs.getString("drop_location"),
+	                rs.getString("pickup_date"),
+	                rs.getString("pickup_time"),
+	                rs.getString("return_date"),
+	                rs.getString("driving_option"),
+	                rs.getBytes("aadhar_card"),
+	                rs.getDouble("total_amount"),
+	                rs.getString("status"),
+	                rs.getTimestamp("created_at"),
+	                user,
+	                car,
+	                driver
+	            );
+	            bookings.add(booking);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return bookings;
+	}
+	
 	public static List<AdminNotification> getUnreadNotifications() {
 	    List<AdminNotification> notifications = new ArrayList<>();
 	    String sql = "SELECT * FROM adminnotifications WHERE is_read = FALSE ORDER BY created_at DESC";
 
 	    try (Connection conn = DBConnection.getConnection();
-	         PreparedStatement psmt = conn.prepareStatement(sql)) {
+	         PreparedStatement pst = conn.prepareStatement(sql)) {
 
-	        ResultSet rs = psmt.executeQuery();
+	        ResultSet rs = pst.executeQuery();
 	        while (rs.next()) {
 	        	
-	        	int userId = rs.getInt("user_id");
+	            AdminNotification adminNotification = new AdminNotification();
+	            adminNotification.setNotificationId(rs.getInt("notification_id"));
+	            
+	            int userId = rs.getInt("user_id");
 	        	User user = UserOperation.getUserById(userId);
-                
-                int bookingId = rs.getInt("booking_id");
-                Booking booking = BookingOpeartion.getBookingById(bookingId);
-                
-                AdminNotification notification = new AdminNotification();
-                notification.setNotificationId(rs.getInt("notification_id"));
-                notification.setMessage(rs.getString("message"));
-                notification.setCreatedAt(rs.getTimestamp("created_at"));
-                notification.setIsRead((rs.getString("is_read")));
-                notification.setUser(user);
-                notification.setBooking(booking);
+	            adminNotification.setUser(user);
 
+	            int bookingId = rs.getInt("booking_id");
+	            Booking booking = BookingOpeartion.getBookingById(bookingId);
+	            adminNotification.setBooking(booking);
 
-	            notifications.add(notification);
+	            adminNotification.setMessage(rs.getString("message"));
+	            adminNotification.setCreatedAt(rs.getTimestamp("created_at"));
+	            adminNotification.setIsRead(rs.getString("is_read"));
+
+	            notifications.add(adminNotification);
 	        }
 
 	    } catch (Exception e) {
@@ -309,7 +358,8 @@ public class BookingOpeartion {
 						rs.getString("pickup_date"), 
 						rs.getString("pickup_Time"), 
 						rs.getString("return_date"), 
-						rs.getString("driving_option"), 
+						rs.getString("driving_option"),
+						rs.getBytes("aadhar_card"),
 						rs.getDouble("total_amount"), 
 						rs.getString("status"),
 						rs.getTimestamp("created_at"),
@@ -327,8 +377,8 @@ public class BookingOpeartion {
 	
 	public static boolean addDriverToBooking(int bookingId, int driver) {
 	    String sql = "UPDATE bookings SET driver_id=? WHERE booking_id=?";
-	    try (Connection con = DBConnection.getConnection();
-	         PreparedStatement psmt = con.prepareStatement(sql)) {
+	    try (Connection con = DBConnection.getConnection()){
+	    	PreparedStatement psmt = con.prepareStatement(sql);
 	    	psmt.setInt(1, driver);
 	    	psmt.setInt(2, bookingId);
 	        return psmt.executeUpdate() > 0;
@@ -337,4 +387,5 @@ public class BookingOpeartion {
 	        return false;
 	    }
 	}
+
 }

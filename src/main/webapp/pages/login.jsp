@@ -26,11 +26,13 @@
         <div class="login-container">
             <h2>Login</h2>
             <!-- Error / Success messages -->
-            <c:if test="${not empty loginErrorMsg}">
-                <div class="custom-error">${loginErrorMsg}</div>
+            <c:if test="${not empty sessionScope.loginErrorMsg}">
+                <div class="custom-error">${sessionScope.loginErrorMsg}</div>
+                <c:remove var="loginErrorMsg" scope="session"/>
             </c:if>
-            <c:if test="${not empty signupSuccessMsg}">
-                <div class="custom-success">${signupSuccessMsg}</div>
+            <c:if test="${not empty sessionScope.signupSuccessMsg}">
+                <div class="custom-success">${sessionScope.signupSuccessMsg}</div>
+                <c:remove var="signupSuccessMsg" scope="session"/>
             </c:if>
             <form action="loginProcess.jsp" method="post">
                 <div class="form-page">

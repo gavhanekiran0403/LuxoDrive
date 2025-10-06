@@ -13,9 +13,8 @@ body {
 
 .list-container {
 	background: white;
-	border-radius: 12px;
+	border-radius: 10px;
 	box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-	margin: 30px auto;
 	padding: 20px;
 	width: 75%;
 	margin-top: 100px;
@@ -28,14 +27,13 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
+	margin: 15px 0px 35px 0px;
 }
 
 .header-row h1 {
 	position: absolute;
 	left: 45%;
 	color: black;
-	margin-bottom: 80px;
 }
 
 .btn {
@@ -56,7 +54,7 @@ table {
 }
 
 table, th, td {
-	border: 1px solid black;
+	border: 1px solid #c0c0c0;
 }
 
 th, td {
@@ -67,7 +65,7 @@ th, td {
 
 th {
 	background: #f5f5f5;
-	font-weight: 500;
+	font-weight: bold;
 }
 
 .link-update {

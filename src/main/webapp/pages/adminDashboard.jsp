@@ -1,3 +1,9 @@
+<%@page import="com.luxodrive.dao.DriverOperation"%>
+<%@page import="com.luxodrive.model.Driver"%>
+<%@page import="com.luxodrive.dao.BookingOpeartion"%>
+<%@page import="com.luxodrive.model.Booking"%>
+<%@page import="com.luxodrive.dao.UserOperation"%>
+<%@page import="com.luxodrive.model.User"%>
 <%@page import="com.luxodrive.model.BankAccount"%>
 <%@page import="com.luxodrive.dao.BankAccountOperation"%>
 <%@page import="com.luxodrive.model.CarOwner"%>
@@ -21,9 +27,17 @@
 
 <jsp:include page="adminNavbar.jsp"></jsp:include>
 <%
+	List<User> users = UserOperation.getAllUsers();
+	int totalUsers = (users != null) ? users.size() : 0;
+	request.setAttribute("totalUsers", totalUsers);
+
 	List<Car> cars = CarOperation.getAllCars();
 	int totalCars = (cars != null) ? cars.size() : 0;
 	request.setAttribute("totalCars", totalCars);
+	
+	List<Driver> drivers = DriverOperation.getAllDrivers();
+	int totalDrivers = (drivers != null) ? drivers.size() : 0;
+	request.setAttribute("totalDrivers", totalDrivers);
 	
 	List<CarOwner> carOwners = CarOwnerOperation.getAllCarOwner();
 	int totalOwners = (carOwners != null) ? carOwners.size() : 0;
@@ -32,6 +46,10 @@
 	List<BankAccount> bankAccounts = BankAccountOperation.getAllBankAccount();
 	int totalBankAccounts = (bankAccounts != null) ? bankAccounts.size() : 0;
 	request.setAttribute("totalBankAccounts", totalBankAccounts);
+	
+	List<Booking> bookings = BookingOpeartion.getAllBookings();
+	int totalBookings = (bookings != null) ? bookings.size() : 0;
+	request.setAttribute("totalBookings", totalBookings);
 
 %>
 <div class="content">
@@ -41,21 +59,21 @@
 		<!-- Quick stats -->
 	<div class="card-section users">
 		<div class="card-body">
-			<a href="#">
+			<a href="userList.jsp">
 				<h6>Users</h6>
 				<h3>Total Users : <c:out value="${totalUsers != null ? totalUsers : 0}"/></h3>
 			</a>
 		</div>
 	</div>
 
-	<div class="card-section categories">
+	<%-- <div class="card-section categories">
 		<div class="card-body">
 			<a href="#">
 				<h6>Categories</h6>
 				<h3>Total Categories : <c:out value="${totalCategories != null ? totalCategories : 0}"/></h3>
 			</a>
 		</div>
-	</div>
+	</div> --%>
 	
 	<div class="card-section cars">
 		<div class="card-body">
@@ -77,7 +95,7 @@
 
 	<div class="card-section drivers">
 		<div class="card-body">
-			<a href="#">
+			<a href="driverList.jsp">
 				<h6>Drivers</h6>
 				<h3>Total Drivers : <c:out value="${totalDrivers != null ? totalDrivers : 0}"/></h3>
 			</a>
@@ -86,7 +104,7 @@
 
 	<div class="card-section bookings">
 		<div class="card-body">
-			<a href="#">
+			<a href="bookingList.jsp">
 				<h6>Bookings</h6>
 				<h3>Total Bookings : <c:out value="${totalBookings != null ? totalBookings :0}"/></h3>
 			</a>
@@ -95,7 +113,7 @@
 	
 	<div class="card-section bankAccounts">
 		<div class="card-body">
-			<a href="#">
+			<a href="bankAccountList.jsp">
 				<h6>Bank Accounts</h6>
 				<h3>Total Bank Accounts : <c:out value="${totalBankAccounts != null ? totalBankAccounts : 0}"/></h3>
 			</a>

@@ -61,13 +61,13 @@
                     		<td>${carOwner.address}</td>
                     		<td>
                         		<!-- Thumbnail -->
-                        		<a href="viewImage.jsp?id=${carOwner.ownerId}">
-                        			<img src="viewImage.jsp?id=${carOwner.ownerId}" 
+                        		<a href="viewImage.jsp?carOwnerId=${carOwner.ownerId}" target="_blank">
+                        			<img src="viewImage.jsp?carOwnerId=${carOwner.ownerId}" 
                             	 	width="60" alt="Aadhar Card"/>
                         		</a>
                     		</td>
                     		<td>
-                    			<a href="bankDetails.jsp?id=${carOwner.ownerId}" class="view-bank">View Bank Details</a>
+                    			<a href="bankDetails.jsp?ownerId=${carOwner.ownerId}" class="view-bank">View Bank Details</a>
                     		</td>
                     		<td>
                     			<a href="viewCars.jsp?id=${carOwner.ownerId}" class="view-cars">View Cars</a>

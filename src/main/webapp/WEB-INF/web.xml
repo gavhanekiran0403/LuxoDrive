@@ -47,5 +47,22 @@
     <servlet-name>carOwnerFormProcess</servlet-name>
     <url-pattern>/pages/carOwnerFormProcess.jsp</url-pattern>
   </servlet-mapping>
+  
+  <!-- Multipart config for bookingProcess.jsp -->
+  <servlet>
+    <servlet-name>bookingProcess</servlet-name>
+    <jsp-file>/pages/bookingProcess.jsp</jsp-file>
+    <multipart-config>
+        <location></location> <!-- optional: temp storage directory -->
+        <max-file-size>10485760</max-file-size>        <!-- 10 MB -->
+        <max-request-size>52428800</max-request-size>  <!-- 50 MB -->
+        <file-size-threshold>1048576</file-size-threshold> <!-- 1 MB -->
+    </multipart-config>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>bookingProcess</servlet-name>
+    <url-pattern>/pages/bookingProcess.jsp</url-pattern>
+  </servlet-mapping>
 
 </web-app>

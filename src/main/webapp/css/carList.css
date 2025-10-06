@@ -6,7 +6,7 @@
 	margin-left:300px;
 	margin-top: 100px;
 	padding: 20px;
-	width: 75%;
+	width: 85%;
 	overflow-x: auto; 
 }
 
@@ -34,13 +34,13 @@ h1 {
 }
 
 table {
-	width: 2000px;
+	min-width: 2500px;
 	border-collapse: collapse;
 	table-layout: fixed; 
 }
 
 table, th, td {
-	border: 1px solid black;
+	border: 1px solid #c0c0c0;
 }
 
 th, td {
@@ -51,7 +51,49 @@ th, td {
 
 th {
 	background: #f5f5f5;
-	font-weight: 500;
+	font-weight: bold;
+}
+
+/* General button styling */
+.btn-status{
+	display: flex;
+	justify-content: flex-start;
+	gap:5px;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-available {
+    background-color: #28a745;   /* green */
+    color: #fff;
+}
+
+.btn-available:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-unavailable {
+    background-color: #dc3545;   /* red */
+    color: #fff;
+}
+
+.btn-unavailable:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+td a button {
+    margin: 2px;
+    min-width: 100px;   /* same size for consistency */
 }
 
 .link-update {
@@ -66,22 +108,23 @@ th {
 	margin: 0 5px;
 }
 
-th:nth-child(1), td:nth-child(1)   { width: 5%; }   /* Car Id */
-th:nth-child(2), td:nth-child(2)   { width: 10%; }  /* Model Name */
-th:nth-child(3), td:nth-child(3)   { width: 10%; }  /* Car Number */
+th:nth-child(1), td:nth-child(1)   { width: 3%; }   /* Car Id */
+th:nth-child(2), td:nth-child(2)   { width: 8%; }  /* Model Name */
+th:nth-child(3), td:nth-child(3)   { width: 8%; }  /* Car Number */
 th:nth-child(4), td:nth-child(4)   { width: 7%; }   /* Fuel Type */
-th:nth-child(5), td:nth-child(5)   { width: 5%; }   /* Seats */
-th:nth-child(6), td:nth-child(6)   { width: 8%; }   /* Rent */
+th:nth-child(5), td:nth-child(5)   { width: 3%; }   /* Seats */
+th:nth-child(6), td:nth-child(6)   { width: 5%; }   /* Rent */
 th:nth-child(7), td:nth-child(7)   { width: 6%; }  /* Year Model */
-th:nth-child(8), td:nth-child(8)   { width: 8%; }  /* Insurance No */
-th:nth-child(9), td:nth-child(9)   { width: 17%; }  /* Features */
-th:nth-child(10), td:nth-child(10) { width: 7%; }   /* Status */
-th:nth-child(11), td:nth-child(11),					/* Images1 */
-th:nth-child(12), td:nth-child(12),					/* Images2 */
-th:nth-child(13), td:nth-child(13),					/* Images3 */
-th:nth-child(14), td:nth-child(14) { width: 8%; }   /* Images4 */
-th:nth-child(15), td:nth-child(15) { width: 8%; }   /* Car Owner */
-th:nth-child(16), td:nth-child(16) { width: 11%; }  /* Action */
+th:nth-child(8), td:nth-child(8)   { width: 6%; }  /* Insurance No */
+th:nth-child(9), td:nth-child(9)   { width: 10%; }  /* Features */
+th:nth-child(10), td:nth-child(10) { width: 5%; }   /* Status */
+th:nth-child(11), td:nth-child(11) { width: 7%; }   /* Change Status */
+th:nth-child(12), td:nth-child(12),					/* Images1 */
+th:nth-child(13), td:nth-child(13),					/* Images2 */
+th:nth-child(14), td:nth-child(14),					/* Images3 */
+th:nth-child(15), td:nth-child(15) { width: 5%; }   /* Images4 */
+th:nth-child(16), td:nth-child(16) { width: 5%; }   /* Car Owner */
+th:nth-child(17), td:nth-child(17) { width: 7%; }  /* Action */
 
 /* Common alert box styling */
 .alert-box {

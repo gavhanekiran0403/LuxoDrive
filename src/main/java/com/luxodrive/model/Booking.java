@@ -1,5 +1,8 @@
 package com.luxodrive.model;
 
+import java.sql.Timestamp;
+import java.util.Arrays;
+
 public class Booking {
 
 	private int bookingId;
@@ -9,10 +12,13 @@ public class Booking {
 	private String pickupTime;
 	private String returnDate;
 	private String drivingOption;
+	private byte[] aadharCard;
 	private double totalAmount;
 	private String status;
+	private Timestamp createdAt;
 	private User user;
 	private Car car;
+	private Driver driver;
 	
 	public Booking() {
 		super();
@@ -20,7 +26,8 @@ public class Booking {
 	}
 
 	public Booking(int bookingId, String pickupLocation, String dropLocation, String pickupDate, String pickupTime,
-			String returnDate, String drivingOption, double totalAmount, String status, User user, Car car) {
+			String returnDate, String drivingOption, byte[] aadharCard, double totalAmount, String status,
+			Timestamp createdAt, User user, Car car, Driver driver) {
 		super();
 		this.bookingId = bookingId;
 		this.pickupLocation = pickupLocation;
@@ -29,10 +36,13 @@ public class Booking {
 		this.pickupTime = pickupTime;
 		this.returnDate = returnDate;
 		this.drivingOption = drivingOption;
+		this.aadharCard = aadharCard;
 		this.totalAmount = totalAmount;
 		this.status = status;
+		this.createdAt = createdAt;
 		this.user = user;
 		this.car = car;
+		this.driver = driver;
 	}
 
 	public int getBookingId() {
@@ -82,7 +92,7 @@ public class Booking {
 	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
 	}
-	
+
 	public String getDrivingOption() {
 		return drivingOption;
 	}
@@ -90,7 +100,14 @@ public class Booking {
 	public void setDrivingOption(String drivingOption) {
 		this.drivingOption = drivingOption;
 	}
-	
+
+	public byte[] getAadharCard() {
+		return aadharCard;
+	}
+
+	public void setAadharCard(byte[] aadharCard) {
+		this.aadharCard = aadharCard;
+	}
 
 	public double getTotalAmount() {
 		return totalAmount;
@@ -106,6 +123,14 @@ public class Booking {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public User getUser() {
@@ -124,11 +149,22 @@ public class Booking {
 		this.car = car;
 	}
 
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+
 	@Override
 	public String toString() {
 		return "Booking [bookingId=" + bookingId + ", pickupLocation=" + pickupLocation + ", dropLocation="
-				+ dropLocation + ", pickupDate=" + pickupDate + ", pickupTime=" + pickupTime + ", returnDate=" + returnDate
-				+ ", drivingOption=" + drivingOption + ", totalAmount=" + totalAmount + ", status=" + status + ", user=" + user + ", car=" + car + "]";
+				+ dropLocation + ", pickupDate=" + pickupDate + ", pickupTime=" + pickupTime + ", returnDate="
+				+ returnDate + ", drivingOption=" + drivingOption + ", aadharCard=" + Arrays.toString(aadharCard)
+				+ ", totalAmount=" + totalAmount + ", status=" + status + ", createdAt=" + createdAt + ", user=" + user
+				+ ", car=" + car + ", driver=" + driver + "]";
 	}
+
 	
 }

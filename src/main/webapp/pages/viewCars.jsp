@@ -22,7 +22,7 @@
 			int ownerId = Integer.parseInt(ownerIdStr);
 			cars = CarOperation.getCarsByOwnerId(ownerId);
 		}
-		System.out.println(cars);
+		
 		request.setAttribute("cars", cars);
 	%>
 	<div class="car-list-container">

@@ -1,0 +1,180 @@
+.booking-container{
+	background: white;
+	width: 40%;
+	padding: 20px;
+	/* box-shadow: 0px 4px 8px rgba(0,0,0,0.1); */
+	margin: 50px auto;
+	/* border-radius: 10px; */
+}
+
+.booking-container h1 {
+	text-align: center;
+	color: #333;
+}
+
+.booking-card{
+	display: flex;
+	flex-direction: column;
+	margin-top: 10px;
+}
+
+.customer-section, .booking-section{
+	flex: 1;
+	padding: 20px;
+	border: none;
+	box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+	border-radius: 8px;
+}
+
+.booking-section{
+	margin-top: 10px;
+}
+
+.customer-section h2, .booking-section h2, .payment-container h2{
+	margin-bottom: 15px;
+	color: #444;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+label {
+	display: block;
+	margin-top: 10px;
+	color: #808080;
+}
+
+input{
+	width: 95%;
+	padding: 5px;
+	margin-top: 5px;
+	border-radius: 8px;
+	border: 2px solid #d1d5db;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+
+input:hover{
+	border-color: #2563eb;
+	background-color: #f0f4ff;
+}
+
+.booking-btn{
+	border: none;
+	background: blue;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+.booking-btn:hover{
+	background: #4242ff;
+}
+
+.payment-container {
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+	border-radius: 8px;
+}
+
+.payment-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.car-summary {
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #f9fafb;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.option-card {
+    display: flex;
+    align-items: center; /* vertically center radio/checkbox */
+    gap: 12px;
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border 0.2s, background 0.2s;
+}
+
+.option-card:hover {
+    border-color: #2563eb;
+    background-color: #f0f4ff;
+}
+
+/* Show radio/checkbox on the left, aligned with content */
+.option-card input[type="radio"],
+.option-card input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Highlight selected option */
+.option-card input[type="radio"]:checked + .option-content,
+.option-card input[type="checkbox"]:checked + .option-content {
+    border-left: 4px solid #2563eb;
+    padding-left: 8px;
+}
+
+.option-content h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #111827;
+}
+
+.option-content p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.price {
+    font-weight: 700;
+    color: #e63946;
+    font-size: 16px;
+}
+
+.uploadfields{
+	display: none;
+  	margin-top: 15px;
+}
+
+.uploadfields input{
+	border: none;
+}
+
+
+.actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-primary {
+    padding: 12px 24px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}

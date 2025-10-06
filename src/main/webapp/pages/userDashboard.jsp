@@ -11,7 +11,14 @@
     
 </head>
 <body class="first-color">
-    
+<%
+
+	if (session.getAttribute("loggedUser") == null) {
+    	response.sendRedirect("login.jsp");
+    	return;
+	}
+
+%>
     <jsp:include page="userNavbar.jsp"></jsp:include>
       
   <div class="content">
@@ -35,10 +42,10 @@
     			<input type="text" name="dropLocation" placeholder="Enter Drop Location" required>
 
     			<label>Pick-up Date</label>
-    			<input type="date" name="pickupDate">
+    			<input type="date" name="pickupDate" required>
 
     			<label>Pick-up Time</label>
-    			<input type="time" name="pickupTime">
+    			<input type="time" name="pickupTime" required>
 				
 				<button type="submit" class="btn">Search Cars</button>
 				

@@ -19,16 +19,16 @@
 		List<Car> cars = CarOperation.getAllCars();
 	%>
 	
-		<c:if test="${not empty successMsg}">
+		<c:if test="${not empty sessionScope.uccessMsg}">
    			<div class="alert-box success">
-      			${successMsg}
+      			${sessionScope.successMsg}
    			</div>
   			<c:remove var="successMsg" scope="session"/>
 		</c:if>
 
-		<c:if test="${not empty errorMsg}">
+		<c:if test="${not empty sessionScope.ErrorMsg}">
    			<div class="alert-box error">
-      			${errorMsg}
+      			${sessionScope.errorMsg}
    			</div>
    			<c:remove var="errorMsg" scope="session"/>
 		</c:if>
@@ -51,6 +51,7 @@
 				<th>Insurance Number</th>
 				<th>Features</th>
 				<th>Status</th>
+				<th>ChangeStatus</th>
 				<th>Image 1</th>
 				<th>Image 2</th>
 				<th>Image 3</th>
@@ -73,6 +74,16 @@
 				<td><%=c.getInsuranceNo()%></td>
 				<td><%=c.getFeatures()%></td>
 				<td><%=c.getStatus()%></td>
+				<td>
+					<div class="btn-status">
+						<a href="updateStatus.jsp?carId=<%=c.getCarId() %>&carStatus=Available"">
+							<button type="button" class="btn-available">Available</button>
+						</a>
+                    	<a href="updateStatus.jsp?carId=<%=c.getCarId() %>&carStatus=Unavailable"">
+                    		<button type="button" class="btn-unavailable">Unavailable</button>
+                    	</a>
+					</div>
+				</td>
 				<td><img src="showImage.jsp?id=<%=c.getCarId()%>&index=0" width="100"/></td>
 				<td><img src="showImage.jsp?id=<%=c.getCarId()%>&index=1" width="100"/></td>
 				<td><img src="showImage.jsp?id=<%=c.getCarId()%>&index=2" width="100"/></td>

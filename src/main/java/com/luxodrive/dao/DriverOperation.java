@@ -22,21 +22,7 @@ public class DriverOperation {
 		
 		try(Connection conn = DBConnection.getConnection()){
 			Statement stmt = conn.createStatement();
-			
-			while(rs.next()) {
-				
-				  Driver driver = new Driver( 
-						 rs.getInt("driver_id"),
-						 rs.getString("full_name"), 
-						 rs.getString("license_no"),
-						 rs.getString("phone_no"), 
-						 rs.getString("email"), 
-						 rs.getString("address") );
-				  drivers.add(driver);
-				 
-			}
-
-			ResultSet rs =stmt.executeQuery("SELECT d.driver_id, d.full_name, d.license_no, d.phone_no, d.email, d.address, " +
+			ResultSet rs =stmt.executeQuery("SELECT d.driver_id, d.full_name, d.license_no, d.phone_no, d.email, d.address, d.status, d.bank_acc_id, " +
 	                "b.bank_acc_id,b.acc_holder_name, b.bank_name, b.account_no, b.ifsc_no " +
 	                "FROM drivers d " +
 	                "JOIN bankaccounts b ON d.bank_acc_id = b.bank_acc_id");
@@ -58,6 +44,7 @@ public class DriverOperation {
 		                rs.getString("phone_no"),
 		                rs.getString("email"),
 		                rs.getString("address"),
+		                rs.getString("status"),
 		                bankAccount
 		            );
 		            drivers.add(driver);
@@ -85,7 +72,7 @@ public class DriverOperation {
 		int row = 0;
 		try (Connection conn = DBConnection.getConnection()) {
 
-			String query = "INSERT INTO drivers(driver_id,full_name,license_no,phone_no,email,address,bank_acc_id) VALUES(?,?,?,?,?,?,?)";
+			String query = "INSERT INTO drivers(driver_id,full_name,license_no,phone_no,email,address,status,bank_acc_id) VALUES(?,?,?,?,?,?,?,?)";
 			PreparedStatement psmt = conn.prepareStatement(query);
 
 			psmt.setInt(1, driver.getDriverId());
@@ -94,7 +81,8 @@ public class DriverOperation {
 			psmt.setString(4, driver.getPhoneNo());
 			psmt.setString(5, driver.getEmail());
 			psmt.setString(6, driver.getAddress());
-			psmt.setInt(7, driver.getBankAccount().getBankAccId());
+			psmt.setString(7, driver.getStatus());
+			psmt.setInt(8, driver.getBankAccount().getBankAccId());
 			
 			row = psmt.executeUpdate();
 
@@ -107,7 +95,7 @@ public class DriverOperation {
 	public static Driver getDriverById(int driverId) {
 	    Driver driver = null;
 	    try (Connection conn = DBConnection.getConnection()) {
-	        String query = ("SELECT d.driver_id, d.full_name, d.license_no, d.phone_no, d.email, d.address, " +
+	        String query = ("SELECT d.driver_id, d.full_name, d.license_no, d.phone_no, d.email, d.address, d.status, " +
 	                "b.bank_acc_id,b.acc_holder_name, b.bank_name, b.account_no, b.ifsc_no " +
 	                "FROM drivers d " +
 	                "JOIN bankaccounts b ON d.bank_acc_id = b.bank_acc_id where d.driver_id = ?");
@@ -132,6 +120,7 @@ public class DriverOperation {
 	                rs.getString("phone_no"),
 	                rs.getString("email"),
 	                rs.getString("address"),
+	                rs.getString("status"),
 	                bankAccount
 	            );
 	        }
@@ -144,7 +133,7 @@ public class DriverOperation {
 	    int row = 0;
 	    try (Connection conn = DBConnection.getConnection()) {
 	        
-	        String query = "UPDATE drivers SET full_name = ?, license_no = ?, phone_no = ?, email = ?, address = ?, bank_acc_id = ? WHERE driver_id = ?";
+	        String query = "UPDATE drivers SET full_name = ?, license_no = ?, phone_no = ?, email = ?, address = ?, status = ?, bank_acc_id = ? WHERE driver_id = ?";
 	        PreparedStatement psmt = conn.prepareStatement(query);
 
 	        psmt.setString(1, driver.getFullName());
@@ -152,12 +141,11 @@ public class DriverOperation {
 	        psmt.setString(3, driver.getPhoneNo());
 	        psmt.setString(4, driver.getEmail());
 	        psmt.setString(5, driver.getAddress());
-	        psmt.setInt(6, driver.getBankAccount().getBankAccId());
-	        psmt.setInt(7, driver.getDriverId());
+	        psmt.setString(6, driver.getStatus());
+	        psmt.setInt(7, driver.getBankAccount().getBankAccId());
+	        psmt.setInt(8, driver.getDriverId());
 	        
 	        row = psmt.executeUpdate();
-	        
-	        System.out.println(" Driver updated: " + driver.getDriverId() + " -> " + driver.getFullName());
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -177,5 +165,21 @@ public class DriverOperation {
 	    }
 	    return row;
 	}
+	
+	public static int updateDriverStatus(int driverId, String status) {
+	    int row = 0;
+	    try (Connection conn = com.luxodrive.jdbc.connection.DBConnection.getConnection()) {
+	        String query = "UPDATE drivers set status = ? WHERE driver_id = ?";
+	        PreparedStatement psmt = conn.prepareStatement(query);
+	        psmt.setString(1, status);
+	        psmt.setInt(2, driverId);
+	        row = psmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return row;
+	}
 }
+
+
 

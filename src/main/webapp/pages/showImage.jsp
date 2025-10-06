@@ -8,28 +8,42 @@
     String idStr = request.getParameter("id");
     String indexStr = request.getParameter("index");
 
-    if (idStr != null && indexStr != null) {
-        int carId = Integer.parseInt(idStr);
-        int index = Integer.parseInt(indexStr);
+    int carId = -1;
+    int index = 0;
 
-        Car car = CarOperation.getCarById(carId);
-       
-        if (car != null && car.getImages() != null && index >= 0 && index < car.getImages().size()) {
-        	byte[] imgData = null;
-            switch (index) {
-                case 0: imgData = car.getImages().get(0); break;
-                case 1: imgData = car.getImages().get(1); break;
-                case 2: imgData = car.getImages().get(2); break;
-                case 3: imgData = car.getImages().get(3); break;
-            }
+    try {
+        if (idStr != null && !idStr.trim().isEmpty() && indexStr != null && !indexStr.trim().isEmpty()) {
+            carId = Integer.parseInt(idStr);
+            index = Integer.parseInt(indexStr);
+        }
+    } catch (NumberFormatException e) {
+        carId = -1;
+        index = 0;
+    }
 
-            if (imgData != null && imgData.length > 0) {
+    Car car = CarOperation.getCarById(carId);
+
+    if (car != null && car.getImages() != null && index >= 0 && index < car.getImages().size()) {
+        byte[] imgData = car.getImages().get(index);
+
+        if (imgData != null && imgData.length > 0) {
+            OutputStream outStream = null;
+            try {
                 response.setContentType("image/jpeg");
-                OutputStream outStream = response.getOutputStream();
+                outStream = response.getOutputStream();
                 outStream.write(imgData);
                 outStream.flush();
-                outStream.close();
+            } catch (java.io.IOException e) {
+                // Client aborted connection; safe to ignore
+            } finally {
+                if (outStream != null) {
+                    try { outStream.close(); } catch (Exception ex) { /* ignore */ }
+                }
             }
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
+    } else {
+        response.sendError(HttpServletResponse.SC_NOT_FOUND);
     }
 %>

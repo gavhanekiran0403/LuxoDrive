@@ -1,4 +1,3 @@
-//pojo cls
 package com.luxodrive.model;
 
 public class Driver {
@@ -9,13 +8,16 @@ public class Driver {
 	private String phoneNo;
 	private String email;
 	private String address;
+	private String status;
+	private BankAccount bankAccount;
 	
 	public Driver() {
 		super();
 
 	}
 
-	public Driver(int driverId, String fullName, String licenseNo, String phoneNo, String email, String address) {
+	public Driver(int driverId, String fullName, String licenseNo, String phoneNo, String email, String address,
+			String status, BankAccount bankAccount) {
 		super();
 		this.driverId = driverId;
 		this.fullName = fullName;
@@ -23,6 +25,8 @@ public class Driver {
 		this.phoneNo = phoneNo;
 		this.email = email;
 		this.address = address;
+		this.status = status;
+		this.bankAccount = bankAccount;
 	}
 
 	public int getDriverId() {
@@ -73,10 +77,26 @@ public class Driver {
 		this.address = address;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
 	@Override
 	public String toString() {
 		return "Driver [driverId=" + driverId + ", fullName=" + fullName + ", licenseNo=" + licenseNo + ", phoneNo="
-				+ phoneNo + ", email=" + email + ", address=" + address + "]";
+				+ phoneNo + ", email=" + email + ", address=" + address + ", status=" + status + ", bankAccount="
+				+ bankAccount + "]";
 	}
-	
 }

@@ -8,7 +8,6 @@
     String driverIdStr = request.getParameter("driverId");
     int driverId = driverIdStr != null ? Integer.parseInt(driverIdStr) : 0;
 
-  
     Driver existingDriver = DriverOperation.getDriverById(driverId);
 
     String fullName = request.getParameter("fullName");
@@ -56,6 +55,7 @@
         driver.setPhoneNo(phoneNo);
         driver.setEmail(email);
         driver.setAddress(address);
+        driver.setStatus("available");
         driver.setBankAccount(bankAccount); // Attach bank account
 
         int row;

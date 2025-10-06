@@ -93,19 +93,19 @@
     if (existingCar != null) {
         row = CarOperation.updateCars(car);
         if(row > 0){
-        	request.setAttribute("sucessMsg","Car updated successfully!");
+        	session.setAttribute("sucessMsg","Car updated successfully!");
         	request.getRequestDispatcher("carList.jsp").forward(request, response);
         }else{
-        	request.setAttribute("errorMsg","Car update failed!");
+        	session.setAttribute("errorMsg","Car update failed!");
         	request.getRequestDispatcher("carList.jsp").forward(request, response);
         }
     } else {
         row = CarOperation.addCars(car);
         if(row > 0){
-        	request.setAttribute("sucessMsg","Car inserted successfully!");
+        	session.setAttribute("sucessMsg","Car inserted successfully!");
         	request.getRequestDispatcher("carList.jsp").forward(request, response);
         }else{
-        	request.setAttribute("errorMsg","Car insert failed!");
+        	session.setAttribute("errorMsg","Car insert failed!");
         	request.getRequestDispatcher("carList.jsp").forward(request, response);
         }
     }

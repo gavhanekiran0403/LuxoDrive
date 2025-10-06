@@ -39,34 +39,55 @@
 				<th>Phone No</th>
 				<th>Email</th>
 				<th>Address</th>
+				<th>Status</th>
+				<th>ChangeStatus</th>
 				<th>Bank Account</th>
 				<th>Action</th>
 			</tr>
 		</thead>
-		<tbody>
-		
-		
-		
-			<c:forEach var="driver" items="${drivers}">
-			<tr>
-				<td>${driver.driverId}</td>
-				<td>${driver.fullName}</td>
-				<td>${driver.licenseNo}</td>
-				<td>${driver.phoneNo}</td>
-				<td>${driver.email}</td>
-				<td>${driver.address}</td>
-				<%-- <td>${driver.bankAccount.accHolderName}</td>
-				 --%>
-				<td>
-   					 <a href="bankDetails.jsp?type=driver&id=${driver.driverId}" class="view-bank">View Bank Details</a>
-				</td>
-				<td>
-					   <a class="link-update" href="driverForm.jsp?driverId=${driver.driverId}">Update</a> | 
-                        <a class="link-delete" href="delete.jsp?driverId=${driver.driverId}">Delete</a>
-                </td>      
-			</tr>
-			</c:forEach>
-		</tbody>
+		<c:choose>
+        	<c:when test="${empty drivers }">
+        		<tbody>
+        			<tr>
+        				<td>
+        					Drivers details not available.
+        				</td>
+        			</tr>
+        		</tbody>
+        	</c:when>
+        	<c:otherwise>
+        		<tbody>
+					<c:forEach var="driver" items="${drivers}">
+						<tr>
+							<td>${driver.driverId}</td>
+							<td>${driver.fullName}</td>
+							<td>${driver.licenseNo}</td>
+							<td>${driver.phoneNo}</td>
+							<td>${driver.email}</td>
+							<td>${driver.address}</td>
+							<td>${driver.status}</td>
+							<td>
+								<div class="btn-status">
+									<a href="updateStatus.jsp?driverId=${driver.driverId}&driverStatus=Available"">
+										<button type="button" class="btn-available">Available</button>
+									</a>
+                    				<a href="updateStatus.jsp?driverId=${driver.driverId}&driverStatus=Unavailable"">
+                    					<button type="button" class="btn-unavailable">Unavailable</button>
+                    				</a>
+								</div>
+							</td>
+							<td>
+   					 			<a href="bankDetails.jsp?type=driver&driverId=${driver.driverId}" class="view-bank">View Bank Details</a>
+							</td>
+							<td>
+					   			<a class="link-update" href="driverForm.jsp?driverId=${driver.driverId}">Update</a> | 
+                        		<a class="link-delete" href="delete.jsp?driverId=${driver.driverId}">Delete</a>
+                			</td>      
+						</tr>
+					</c:forEach>
+				</tbody>
+        	</c:otherwise>
+        </c:choose>
 	</table>
 	</div>
 </body>

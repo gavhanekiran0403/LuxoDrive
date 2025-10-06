@@ -8,8 +8,9 @@
     pageEncoding="UTF-8"%>
 
 <%
+	/* Delete Car */
+	
     String carIdStr = request.getParameter("carId");
-    String ownerIdStr = request.getParameter("ownerId");
 
     if (carIdStr != null && !carIdStr.isEmpty()) {
         try {
@@ -25,7 +26,10 @@
             System.out.println("Invalid carId format.");
         }
     }
-
+    
+	/* Delete Car Owner */
+	
+    String ownerIdStr = request.getParameter("ownerId");
     if (ownerIdStr != null && !ownerIdStr.isEmpty()) {
         try {
             int ownerId = Integer.parseInt(ownerIdStr);
@@ -45,7 +49,8 @@
             System.out.println("Invalid ownerId format.");
         }
     }
-    //delete driver
+    
+   /*  delete driver */
     
     String driverIdStr = request.getParameter("driverId");
 
@@ -53,34 +58,28 @@
         try {
             int driverId = Integer.parseInt(driverIdStr);
 
-            // ✅ First fetch the driver with bank account
             Driver driver = DriverOperation.getDriverById(driverId);
 
             if (driver != null) {
-                // ✅ If driver has bank account, delete it first
                 if (driver.getBankAccount() != null) {
                     int bankAccId = driver.getBankAccount().getBankAccId();
                     BankAccountOperation.deleteBankAccount(bankAccId);
                 }
 
-                // ✅ Now delete driver
                 int row = DriverOperation.deleteDriver(driverId);
 
                 if (row > 0) {
                     response.sendRedirect("driverList.jsp");
                     return;
                 } else {
-                    System.out.println("❌ Failed to delete driver with ID: " + driverId);
+                    System.out.println("Failed to delete driver with ID: " + driverId);
                 }
             } else {
-                System.out.println("⚠️ Driver not found for ID: " + driverId);
+                System.out.println("Driver not found for ID: " + driverId);
             }
         } catch (NumberFormatException e) {
-            System.out.println("⚠️ Invalid driverId format: " + driverIdStr);
+            System.out.println("Invalid driverId format: " + driverIdStr);
         }
     }
-
-    // Default redirect
-    response.sendRedirect("driverList.jsp");
     
 %>

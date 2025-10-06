@@ -24,7 +24,6 @@
         <div class="header-row">
             <h1>Bank Account List</h1>
         </div>
-
         <table>
         <thead>
             <tr>
@@ -35,18 +34,31 @@
                 <th>IFSC Code</th>
             </tr>
         </thead>
-        <tbody>
-            <c:forEach var="acc" items="${accounts}">
-            <tr>
-                <td>${acc.bankAccId}</td>
-                <td>${acc.accHolderName}</td>
-                <td>${acc.bankName}</td>
-                <td>${acc.accountNo}</td>
-                <td>${acc.ifscNo}</td>
-            </tr>
-            </c:forEach>
-        </tbody>
-        </table>
+        	<c:choose>
+        		<c:when test="${empty accounts }">
+        			<tbody>
+        				<tr>
+        					<td>
+        						Accounts details not available.
+        					</td>
+        				</tr>
+        			</tbody>
+        		</c:when>
+        	<c:otherwise>
+        		<tbody>
+            		<c:forEach var="acc" items="${accounts}">
+            			<tr>
+                			<td>${acc.bankAccId}</td>
+                			<td>${acc.accHolderName}</td>
+                			<td>${acc.bankName}</td>
+                			<td>${acc.accountNo}</td>
+                			<td>${acc.ifscNo}</td>
+            			</tr>
+            		</c:forEach>
+        		</tbody>
+        	</c:otherwise>
+        </c:choose>
+      </table>
     </div>
 </body>
 </html>

@@ -63,7 +63,7 @@
     <!-- card section end -->
 
     <!-- car categoris section start-->
-    <div id="categories" class="container my-5">
+   <!--  <div id="categories" class="container my-5">
         <h2 class="text-center mb-4">Car Categories</h2>
         <div class="row g-4 text-center">
 
@@ -100,7 +100,7 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 
     <!-- car categoris section end-->
 

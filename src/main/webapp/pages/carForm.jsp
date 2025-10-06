@@ -87,7 +87,9 @@
                     <select name="carOwner" required>
                     	<option value="">Select the Car Owner</option>
                     	<c:forEach var="carOwner" items="${carOwners}">
-                    		<option value="${carOwner.ownerId }">${carOwner.ownerName }</option>
+                    		<option value="${carOwner.ownerId }"
+                    		<c:if test="${car != null && carOwner.ownerId == car.carOwner.ownerId}">selected</c:if>>
+                    			${carOwner.ownerName }</option>
                     	</c:forEach>
                     </select>
                  

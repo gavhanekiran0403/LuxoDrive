@@ -36,10 +36,19 @@ public class CarOperation {
 						
 				CarOwner carOwner = CarOwnerOperation.getCarOwnerById(ownerId);
 
-				Car c = new Car(rs.getInt("car_id"), rs.getString("model_name"), rs.getString("car_no"),
-						rs.getString("fuel_type"), rs.getInt("seats"), rs.getDouble("rent"),
-						rs.getInt("car_year_model"), rs.getString("insurance_no"), rs.getString("features"),rs.getString("status"),
-						images, carOwner);
+				Car c = new Car(
+						rs.getInt("car_id"), 
+						rs.getString("model_name"), 
+						rs.getString("car_no"),
+						rs.getString("fuel_type"), 
+						rs.getInt("seats"), 
+						rs.getDouble("rent"),
+						rs.getInt("car_year_model"), 
+						rs.getString("insurance_no"), 
+						rs.getString("features"),
+						rs.getString("status"),
+						images, 
+						carOwner);
 				cars.add(c);
 			}
 		} catch (Exception e) {
@@ -197,6 +206,20 @@ public class CarOperation {
 		}
 		
 		return cars;
+	}
+	
+	public static int updateCarStatus(int carId, String status) {
+		int row = 0;
+		try (Connection conn = DBConnection.getConnection()) {
+			String query = "UPDATE cars SET status = ? WHERE car_id = ?";
+			PreparedStatement psmt = conn.prepareStatement(query);
+			psmt.setString(1, status);
+			psmt.setInt(2, carId);
+			row = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return row;
 	}
 
 }

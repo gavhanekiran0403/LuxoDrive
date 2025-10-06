@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.luxodrive.model.Car"%>
 <%@page import="java.util.List"%>
 <%@ page import="com.luxodrive.dao.CarOperation" %>
@@ -13,8 +14,19 @@
 <body>
 <jsp:include page="userNavbar.jsp" />
 <%
+	request.setAttribute("pickupLocation", request.getParameter("pickupLocation"));
+	request.setAttribute("dropLocation", request.getParameter("dropLocation"));
+	request.setAttribute("pickupDate", request.getParameter("pickupDate"));
+	request.setAttribute("pickupTime", request.getParameter("pickupTime"));
+	
     List<Car> cars = CarOperation.getAllCars();
-    request.setAttribute("cars", cars);
+    List<Car> availableCars = new ArrayList<>();
+    for(Car c : cars){
+    	if("Available".equalsIgnoreCase(c.getStatus())){
+    		availableCars.add(c);
+    	}
+    }
+    request.setAttribute("cars", availableCars);
 %>
 
 <div class="section">
@@ -49,16 +61,27 @@
         <div class="details">
           <h3>${car.modelName}</h3>
           <p>${car.seats} Seats | ${car.fuelType} | ${car.carYearModel} Model</p>
+          <p>${car.carNo}</p>
           <p>${car.features}</p>
           <p>${car.status}</p>
           <p class="price">₹ ${car.rent} / Day </p>
-          <a href="booking.jsp" class="book-btn">Book Now</a>
+          <%-- <a href="booking.jsp?pickupLocation=${pickupLocation}&dropLocation=${dropLocation}&pickupDate=${pickupDate}
+          			&pickupTime=${pickupTime}&carId=${car.carId}" class="book-btn">Select Car</a> --%>
+        
+        	<form action="booking.jsp" method="post">
+    			<input type="hidden" name="pickupLocation" value="${pickupLocation}">
+   		 		<input type="hidden" name="dropLocation" value="${dropLocation}">
+    			<input type="hidden" name="pickupDate" value="${pickupDate}">
+    			<input type="hidden" name="pickupTime" value="${pickupTime}">
+    			<input type="hidden" name="carId" value="${car.carId}">
+    			<button class="book-btn" type="submit">Select Car</button>
+			</form>
         </div>
       </div>
     </c:forEach>
 
     </div>
 </div>
-
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

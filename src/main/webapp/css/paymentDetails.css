@@ -1,0 +1,86 @@
+.payment-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 24px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.payment-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.car-summary {
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: #f9fafb;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.option-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border 0.2s ease;
+}
+
+.option-card:hover {
+    border-color: #2563eb;
+}
+
+.option-card input[type="radio"] {
+    margin-top: 6px;
+}
+
+.option-content h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #111827;
+}
+
+.option-content p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.price {
+    font-weight: 700;
+    color: #e63946;
+    font-size: 16px;
+}
+
+.actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-primary {
+    padding: 12px 24px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}

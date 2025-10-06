@@ -43,10 +43,15 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #c0c0c0;
     padding: 10px;
     text-align: center;
     word-wrap: break-word;
+}
+
+th {
+    background: #f0f0f0;
+    font-weight: bold;
 }
 
 .view-bank{
@@ -87,12 +92,6 @@ th:nth-child(6), td:nth-child(6) { width: 10%; }  /* Aadhar */
 th:nth-child(7), td:nth-child(7) { width: 10%; }  /* Bank */
 th:nth-child(8), td:nth-child(8) { width: 10%; }  /* Cars */
 th:nth-child(9), td:nth-child(9) { width: 15%; }  /* Action */
-
-th {
-    background: #f0f0f0;
-    font-weight: bold;
-}
-
 
 /* Bank Details css */
 

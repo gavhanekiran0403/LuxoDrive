@@ -1,84 +1,166 @@
+<%@page import="com.luxodrive.model.User"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Car Rental - LuxoDrive</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Car Rental - LuxoDrive</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../css/home.css">
-    
+<!-- Bootstrap JS -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="../css/home.css">
+<style>
+.btn-book-now {
+    background-color: #ffb703 !important;
+    color: #212529 !important;
+    font-weight: 600 !important;
+    padding: 10px 25px !important;
+    font-size: 18px !important;
+    border: none !important;
+    border-radius: 50px !important;
+    box-shadow: 0 6px 18px rgba(255, 183, 3, 0.5) !important;
+    transition: all 0.3s ease-in-out !important;
+    display: inline-block !important;
+    margin-top: 25px;
+}
+
+.btn-book-now:hover {
+    background-color: #fca311 !important;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 183, 3, 0.6);
+    text-decoration: none !important;
+}
+
+.modal-content {
+	border-radius: 20px;
+}
+</style>
+
 </head>
 
 <body>
+	<%
+	User loggedUser = (User) session.getAttribute("loggedUser");
+	request.setAttribute("loggedUser", loggedUser);
+	%>
+	<!-- Navbar start -->
+	<nav
+		class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top px-4 px-lg-5 py-lg-0">
+		<a href="#" class="navbar-brand p-0"> <img
+			src="../images/luxodrive11-removebg-preview.png" alt="LuxoDrive Logo"
+			height="50">
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarCollapse">
+			<span class="fa fa-bars"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav mx-auto">
+				<a href="home.jsp" class="nav-item nav-link active">Home</a> <a
+					href="Aboutus.html" class="nav-item nav-link">About</a> <a
+					href="Services.html" class="nav-item nav-link">Services</a> <a
+					href="Contact.html" class="nav-item nav-link">Contact</a>
+			</div>
+			<!-- Login/Logout Button -->
+			<c:choose>
+				<c:when test="${not empty loggedUser}">
+					<a href="<c:url value='/pages/logout.jsp' />"
+						class="btn btn-danger rounded-pill py-2 px-4">Logout</a>
+				</c:when>
+				<c:otherwise>
+					<a href="<c:url value='/pages/login.jsp' />"
+						class="btn btn-primary rounded-pill py-2 px-4">Log In</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</nav>
 
-    <!-- Navbar start -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top px-4 px-lg-5 py-lg-0">
-        <a href="#" class="navbar-brand p-0">
-            <img src="../images/luxodrive11-removebg-preview.png" alt="LuxoDrive Logo" height="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-    <span class="fa fa-bars"></span>
-  </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav mx-auto">
-                <a href="home.jsp" class="nav-item nav-link active">Home</a>
-                <a href="Aboutus.html" class="nav-item nav-link">About</a>
-                <a href="Cars.html" class="nav-item nav-link">Cars</a>
-                <a href="Services.html" class="nav-item nav-link">Services</a>
-                <a href="Booking.html" class="nav-item nav-link">Booking</a>
-                <a href="Contact.html" class="nav-item nav-link">Contact</a>
-            </div>
-            <a href="login.jsp" class="btn btn-primary rounded-pill py-2 px-4">Log In</a>
-        </div>
-    </nav>
+	<!-- Navbar end -->
 
-    <!-- Navbar end -->
+	<!-- baner tag Section start-->
+	<div
+		class="container-fluid hero-section d-flex align-items-center text-center text-white">
+		<div class="container">
+			<h1 class="display-4 fw-bold">Drive Your Dream Car</h1>
+			<p class="lead">Luxury & budget cars at unbeatable prices. Book
+				online & ride with comfort.</p>
+			<c:choose>
+				<c:when test="${not empty loggedUser}">
+					<!-- User logged in: Go to booking page -->
+					<a href="<c:url value='/pages/booking.jsp' />" class="btn-book-now">
+						Book Now
+					</a>
+				</c:when>
+				<c:otherwise>
+					<!-- User not logged in: Show modal popup -->
+					<button type="button" class="btn-book-now" data-bs-toggle="modal"
+						data-bs-target="#loginPopup">Book Now</button>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 
-    <!-- baner tag Section start-->
-    <div class="container-fluid hero-section d-flex align-items-center text-center text-white">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Drive Your Dream Car</h1>
-            <p class="lead">Luxury & budget cars at unbeatable prices. Book online & ride with comfort.</p>
-            <a href="#booking" class="btn btn-warning btn-lg rounded-pill">Book Now</a>
-        </div>
-    </div>
+	<!-- baner tag Section end-->
 
-    <!-- baner tag Section end-->
+	<!-- Login Required Modal -->
+	<div class="modal fade" id="loginPopup" tabindex="-1"
+		aria-labelledby="loginPopupLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content text-center">
+				<div class="modal-header border-0">
+					<h5 class="modal-title w-100" id="loginPopupLabel">Login
+						Required</h5>
+				</div>
+				<div class="modal-body">
+					<p class="mb-3">Please log in to book your car.</p>
+					<a href="<c:url value='/pages/login.jsp' />"
+						class="btn btn-primary rounded-pill px-4">Go to Login</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- About start-->
+	<!-- About start-->
 
-    <div id="about" class="container my-5">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <img src="../images/view-three-dimensional-car-with-simple-background.jpg" class="img-fluid rounded" alt="About">
-            </div>
-            <div class="col-lg-6">
-                <h2>About LuxoDrive</h2>
-                <p>We provide affordable and luxury car rental services across India. Whether you need a car for business, travel, or special occasions, LuxoDrive has you covered.</p>
-                <ul>
-                    <li>✔ Affordable prices</li>
-                    <li>✔ 24/7 Customer Support</li>
-                    <li>✔ Wide range of cars</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+	<div id="about" class="container my-5">
+		<div class="row align-items-center">
+			<div class="col-lg-6">
+				<img
+					src="../images/view-three-dimensional-car-with-simple-background.jpg"
+					class="img-fluid rounded" alt="About">
+			</div>
+			<div class="col-lg-6">
+				<h2>LuxoDrive</h2>
+				<p>We provide affordable and luxury car rental services across
+					India. Whether you need a car for business, travel, or special
+					occasions, LuxoDrive has you covered.</p>
+				<ul>
+					<li>✔ Affordable prices</li>
+					<li>✔ 24/7 Customer Support</li>
+					<li>✔ Wide range of cars</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-    <!-- About start-->
+	<!-- About start-->
 
 
-    <!-- Car Categories start -->
+	<!-- Car Categories start -->
 
-    <div id="categories" class="container my-5">
+	<!-- <div id="categories" class="container my-5">
         <h2 class="text-center mb-4">Car Categories</h2>
         <div class="row g-4 text-center">
 
@@ -115,15 +197,15 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 
-    <!-- Car Categories end -->
+	<!-- Car Categories end -->
 
 
 
-    <!-- Cars Feature section start-->
+	<!-- Cars Feature section start-->
 
-    <div id="cars" class="container my-5">
+	<!-- <div id="cars" class="container my-5">
         <h2 class="text-center mb-4">Our Featured Cars</h2>
         <div class="row g-4">
             <div class="col-md-3">
@@ -171,45 +253,45 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <!-- Cars Feature section end-->
-
-
-    <!-- Services section start -->
-
-    <div id="services" class="container my-5">
-        <h2 class="text-center mb-4">Our Services</h2>
-        <div class="row g-4">
-            <div class="col-md-3 text-center">
-                <i class="fa fa-car fa-3x text-primary mb-3"></i>
-                <h5>Wide Range</h5>
-                <p>Choose from luxury sedans, SUVs, hatchbacks, and more.</p>
-            </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-headset fa-3x text-primary mb-3"></i>
-                <h5>24/7 Support</h5>
-                <p>Always available for bookings & queries.</p>
-            </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-shield-alt fa-3x text-primary mb-3"></i>
-                <h5>Insurance</h5>
-                <p>Every ride is fully insured & safe.</p>
-            </div>
-            <div class="col-md-3 text-center">
-                <i class="fa fa-dollar-sign fa-3x text-primary mb-3"></i>
-                <h5>Best Pricing</h5>
-                <p>Competitive rates, no hidden charges.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Services section end -->
+	<!-- Cars Feature section end-->
 
 
-    <!-- Booking Form start -->
+	<!-- Services section start -->
 
-    <div id="booking" class="container my-5">
+	<div id="services" class="container my-5">
+		<h2 class="text-center mb-4">Our Services</h2>
+		<div class="row g-4">
+			<div class="col-md-3 text-center">
+				<i class="fa fa-car fa-3x text-primary mb-3"></i>
+				<h5>Wide Range</h5>
+				<p>Choose from luxury sedans, SUVs, hatchbacks, and more.</p>
+			</div>
+			<div class="col-md-3 text-center">
+				<i class="fa fa-headset fa-3x text-primary mb-3"></i>
+				<h5>24/7 Support</h5>
+				<p>Always available for bookings & queries.</p>
+			</div>
+			<div class="col-md-3 text-center">
+				<i class="fa fa-shield-alt fa-3x text-primary mb-3"></i>
+				<h5>Insurance</h5>
+				<p>Every ride is fully insured & safe.</p>
+			</div>
+			<div class="col-md-3 text-center">
+				<i class="fa fa-dollar-sign fa-3x text-primary mb-3"></i>
+				<h5>Best Pricing</h5>
+				<p>Competitive rates, no hidden charges.</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Services section end -->
+
+
+	<!-- Booking Form start -->
+
+	<!-- <div id="booking" class="container my-5">
         <div class="bg-light p-4 rounded shadow">
             <h2 class="text-center mb-4">Book Your Car</h2>
             <form class="row g-3">
@@ -264,52 +346,58 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 
-    <!-- Booking Form end -->
+	<!-- Booking Form end -->
 
 
-    <!-- Footer start -->
+	<!-- Footer start -->
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
 
-                <div class="col-md-4">
-                    <h5>LuxoDrive Rentals</h5>
-                    <p>Your trusted partner for luxury & budget car rentals. Drive your dream car with comfort and safety.</p>
-                </div>
+				<div class="col-md-4">
+					<h5>LuxoDrive Rentals</h5>
+					<p>Your trusted partner for luxury & budget car rentals. Drive
+						your dream car with comfort and safety.</p>
+				</div>
 
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="cars.html">Our Cars</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
+				<div class="col-md-4">
+					<h5>Quick Links</h5>
+					<ul class="list-unstyled">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="services.html">Services</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
 
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, New York, USA</p>
-                    <p><i class="fas fa-phone-alt"></i> +012 345 6789</p>
-                    <p><i class="fas fa-envelope"></i> info@luxodrive.com</p>
-                    <div class="social mt-3">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2025 LuxoDrive Rentals | All Rights Reserved
-            </div>
-        </div>
-    </footer>
+				<div class="col-md-4">
+					<h5>Contact Us</h5>
+					<p>
+						<i class="fas fa-map-marker-alt"></i> 123 Main Street, New York,
+						USA
+					</p>
+					<p>
+						<i class="fas fa-phone-alt"></i> +012 345 6789
+					</p>
+					<p>
+						<i class="fas fa-envelope"></i> info@luxodrive.com
+					</p>
+					<div class="social mt-3">
+						<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
+							class="fab fa-twitter"></i></a> <a href="#"><i
+							class="fab fa-instagram"></i></a> <a href="#"><i
+							class="fab fa-linkedin-in"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">&copy; 2025 LuxoDrive Rentals | All
+				Rights Reserved</div>
+		</div>
+	</footer>
 
-    <!-- Footer end -->
+	<!-- Footer end -->
 
 </body>
 

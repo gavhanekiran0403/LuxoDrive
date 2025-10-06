@@ -1,0 +1,301 @@
+/* ===========================
+   Notifications Bar
+=========================== */
+.notif-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 10px auto;
+    max-width: 600px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.header-notif{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header-notif h2{
+	
+	display: block;
+}
+
+.notif-msg {
+    flex: 1;
+    font-size: 14px;
+    color: #111827;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notif-btn a {
+    padding: 6px 12px;
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+
+.notif-btn a:hover {
+    background: #1e40af;
+}
+
+/* ===========================
+   Booking Details Container
+=========================== */
+.notify-container {
+    margin: 100px 0px 0px 400px;
+    max-width: 700px;
+}
+
+.notify-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #222;
+}
+
+/* ===========================
+   Page Layout
+=========================== */
+.page-layout {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.car-section, .booking-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* ===========================
+   Car Card
+=========================== */
+.car-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Gallery */
+.car-images input[type="radio"] {
+    display: none;
+}
+
+.main-image {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.thumbnails {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    padding-bottom: 8px;
+}
+
+.thumbnails img {
+    width: 55px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.thumbnails img:hover {
+    transform: scale(1.1);
+}
+
+input[type="radio"]:checked + label img {
+    border-color: #1d3557;
+}
+
+/* Show correct main image */
+.car-card input[id^="img1"]:checked ~ .main-image .img1,
+.car-card input[id^="img2"]:checked ~ .main-image .img2,
+.car-card input[id^="img3"]:checked ~ .main-image .img3,
+.car-card input[id^="img4"]:checked ~ .main-image .img4 {
+    opacity: 1;
+    position: relative;
+}
+
+/* Car Details */
+.details {
+    padding: 0px 20px;
+}
+
+.details h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.details p {
+    margin: 4px 0;
+    font-size: 12px;
+    color: #555;
+}
+
+.details .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e63946;
+    margin-top: 8px;
+}
+
+/* ===========================
+   Booking Info Card
+=========================== */
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 18px 20px;
+}
+
+.label-value {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+    margin-bottom: 5px;
+}
+
+.label {
+    font-weight: 500;
+    color: #374151;
+}
+
+.value {
+    font-weight: 600;
+    color: #111827;
+    background: #f9fafb;
+    border-radius: 6px;
+    padding: 4px 8px;
+    min-width: 180px;
+    text-align: left; 
+}
+
+.booking-section .price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Actions / Buttons */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-outline {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-primary {
+    background: #0ea5a4;
+    color: white;
+}
+
+/* Container styling for the driver selection */
+#driverSelect {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#driverSelect:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Label styling */
+label[for="driverSelect"] {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+/* Optional: hover effect for dropdown */
+#driverSelect option:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 900px) {
+    .page-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .car-section, .booking-section {
+        max-width: 100%;
+    }
+    .notif-container {
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .actions {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+}

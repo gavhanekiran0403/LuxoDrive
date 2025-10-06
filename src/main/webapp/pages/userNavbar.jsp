@@ -29,11 +29,13 @@
             <div class="navbar-nav mx-auto">
                 <a href="userDashboard.jsp" class="nav-item nav-link active">Home</a>
                 <a href="cars.jsp" class="nav-item nav-link">Cars</a>
-                <a href="booking.jsp" class="nav-item nav-link">Booking</a>
+                <a href="myBooking.jsp" class="nav-item nav-link">MyBookings</a>
                 <a href="services.jsp" class="nav-item nav-link">Services</a>
                 <a href="aboutus.jsp" class="nav-item nav-link">Aboutus</a>
                 <a href="contact.jsp" class="nav-item nav-link">Contact</a>
+                <a href="userNotification.jsp" class="nav-item nav-link">Notifications</a>
             </div>
+           	<%-- <a href="userProfile.jsp.jsp" >👤 ${user.fullName} </a> --%>
             <a href="logout.jsp" class="logout-btn" onclick="return confirm('Are you sure you want to logout?');">
                 Logout
             </a>
@@ -41,5 +43,6 @@
     </nav>
     
     <!-- Navbar end -->
+    
 </body>
 </html>

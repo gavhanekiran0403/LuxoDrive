@@ -3,10 +3,17 @@
 <%@page import="com.luxodrive.dao.UserOperation"%>
 <%@page import="com.luxodrive.jdbc.connection.DBConnection"%>
 <%@page import="java.sql.*"%>
-
+<%@page session="true" %>
 <%
 String email = request.getParameter("email");
 String password = request.getParameter("password");
+
+if(email == null || email.isEmpty() || password == null || password.isEmpty()) {
+    session.setAttribute("email", email);  
+    response.sendRedirect("index.jsp");
+} else {
+    out.println("Login first!");
+}
 
 if(email == null || email.isEmpty() || password == null || password.isEmpty()) {
     session.setAttribute("loginErrorMsg", "Please enter both email and password.");
@@ -41,7 +48,15 @@ try (Connection con = DBConnection.getConnection()) {
     PreparedStatement ps = con.prepareStatement("UPDATE users SET status='online' WHERE email=?");
     ps.setString(1, user.getEmail().trim());
     ps.executeUpdate();
+    
+    HttpSession session2 = request.getSession();
+    session2.setAttribute("user", user);
 
+    // Store the session in application scope so admin can access it later
+    ServletContext context = getServletContext();
+    context.setAttribute("user_" + user.getUserId(), session2);
+
+    session.setAttribute("loggedUser", user);
     session.setAttribute("fullName", user.getFullName());
     session.setAttribute("role", user.getRole());
     session.setAttribute("email", user.getEmail().trim());

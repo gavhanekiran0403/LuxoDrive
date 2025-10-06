@@ -18,7 +18,7 @@ body {
 	box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 	margin: 30px auto;
 	padding: 20px;
-	width: 75%;
+	width: 85%;
 	margin-top: 100px;
 	margin-left: 300px;
 	overflow-x : auto;
@@ -49,13 +49,13 @@ h1 {
 }
 
 table {
-	min-width: 1300px;
+	min-width: 2000px;
 	border-collapse: collapse;
 	table-layout: fixed; 
 }
 
 table, th, td {
-	border: 1px solid black;
+	border: 1px solid #c0c0c0;
 }
 
 th, td {
@@ -66,8 +66,51 @@ th, td {
 
 th {
 	background: #f5f5f5;
-	font-weight: 500;
+	font-weight: bold;
 }
+
+/* General button styling */
+.btn-status{
+	display: flex;
+	justify-content: flex-start;
+	gap:5px;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-available {
+    background-color: #28a745;   /* green */
+    color: #fff;
+}
+
+.btn-available:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-unavailable {
+    background-color: #dc3545;   /* red */
+    color: #fff;
+}
+
+.btn-unavailable:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+td a button {
+    margin: 2px;
+    min-width: 100px;   /* same size for consistency */
+}
+
 
 .link-update {
 	color: blue;
@@ -81,10 +124,13 @@ th {
 	margin: 0 5px;
 }
 
-th:nth-child(1), td:nth-child(1)   { width: 5%; }   /* driver Id */
+th:nth-child(1), td:nth-child(1)   { width: 7%; }   /* driver Id */
 th:nth-child(2), td:nth-child(2)   { width: 12%; }  /* full Name */
 th:nth-child(3), td:nth-child(3)   { width: 10%; }  /* license Number */
-th:nth-child(4), td:nth-child(4)   { width: 8%; }   /* phone number */
-th:nth-child(5), td:nth-child(5)   { width: 15%; }   /* email */
-th:nth-child(6), td:nth-child(6)   { width: 15%; }   /* address */
-th:nth-child(7), td:nth-child(7)   { width: 11%; } /*  action  */
+th:nth-child(4), td:nth-child(4)   { width: 10%; }   /* phone number */
+th:nth-child(5), td:nth-child(5)   { width: 11%; }   /* email */
+th:nth-child(6), td:nth-child(6)   { width: 11%; }   /* address */
+th:nth-child(7), td:nth-child(7)   { width: 8%; }   /* status */
+th:nth-child(8), td:nth-child(8)   { width: 10%; }   /* change status */
+th:nth-child(9), td:nth-child(9)   { width: 10%; }   /* bank account */
+th:nth-child(10), td:nth-child(10)   { width: 11%; } /*  action  */
