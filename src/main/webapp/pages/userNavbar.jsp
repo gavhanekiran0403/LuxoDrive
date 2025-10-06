@@ -1,3 +1,5 @@
+<%@page import="com.luxodrive.model.User"%>
+<%@page import="com.luxodrive.dao.UserOperation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,8 +15,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/userDashboard.css">
 </head>
 <body>
+<%
+    String email = (String) session.getAttribute("email");
+    User user = null;
+
+    if(email != null && !email.isEmpty()){
+        user = UserOperation.getUserByEmail(email);
+    }
+%>
 
 	<!-- Navbar start -->
     
@@ -35,7 +46,15 @@
                 <a href="contact.jsp" class="nav-item nav-link">Contact</a>
                 <a href="userNotification.jsp" class="nav-item nav-link">Notifications</a>
             </div>
-           	<a href="userProfile.jsp.jsp" >👤 ${user.fullName} </a>
+           	<div class="d-flex align-items-center">
+    			<% if(user != null){ %>
+    				<a href="userProfile.jsp" class="username-badge me-3">
+        				<i class="fa fa-user-circle"></i> <%= user.getFullName() %>
+    				</a>
+				<% } else { %>
+    				<a href="login.jsp" class="btn btn-outline-primary me-3">Login</a>
+				<% } %>
+
             <a href="logout.jsp" class="logout-btn" onclick="return confirm('Are you sure you want to logout?');">
                 Logout
             </a>

@@ -99,7 +99,7 @@
 			<c:choose>
 				<c:when test="${not empty loggedUser}">
 					<!-- User logged in: Go to booking page -->
-					<a href="<c:url value='/pages/booking.jsp' />" class="btn-book-now">
+					<a href="<c:url value='/pages/cars.jsp' />" class="btn-book-now">
 						Book Now
 					</a>
 				</c:when>

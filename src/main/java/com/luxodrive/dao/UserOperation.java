@@ -126,4 +126,56 @@ public class UserOperation {
         }
         return status;
     }
+    
+    public static User getUserByEmail(String email) {
+        User user = null;
+        String sql = "SELECT user_id, full_name, phone_no, email, password, confirmpassword, role, status FROM users WHERE email=?";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, email.trim());
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone_no"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("confirmpassword"),
+                        rs.getString("role"),
+                        rs.getString("status")
+                );
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+    
+    public static boolean updateUser(String oldEmail, String fullName, String newEmail, String phoneNo) {
+        boolean status = false;
+        String sql = "UPDATE users SET full_name = ?, phone_no = ?, email = ? WHERE email = ?";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, fullName);
+            ps.setString(2, phoneNo);
+            ps.setString(3, newEmail);
+            ps.setString(4, oldEmail); // condition (previous email to find user)
+
+            int rows = ps.executeUpdate();
+            status = rows > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
 }
