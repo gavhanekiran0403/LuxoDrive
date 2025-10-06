@@ -35,7 +35,7 @@
                 <a href="contact.jsp" class="nav-item nav-link">Contact</a>
                 <a href="userNotification.jsp" class="nav-item nav-link">Notifications</a>
             </div>
-           	<%-- <a href="userProfile.jsp.jsp" >👤 ${user.fullName} </a> --%>
+           	<a href="userProfile.jsp.jsp" >👤 ${user.fullName} </a>
             <a href="logout.jsp" class="logout-btn" onclick="return confirm('Are you sure you want to logout?');">
                 Logout
             </a>
