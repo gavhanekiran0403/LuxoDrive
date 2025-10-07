@@ -31,7 +31,7 @@
 
         <div class="booking-box">
           <div class="tabs">
-            <div class="tab active">Qiuck Search</div>
+            <div class="tab active">Quick Search</div>
           </div>
           <form class="form" action="cars.jsp" method="post">
     		
@@ -47,10 +47,10 @@
     			<label>Pick-up Time</label>
     			<input type="time" name="pickupTime" required>
 				
-				<button type="submit" class="btn">Search Cars</button>
-				
+				<div class="search-button">
+					<button type="submit">Search Cars</button>
+				</div>
 			</form>
-
         </div>
     </div>
 

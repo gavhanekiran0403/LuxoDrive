@@ -20,33 +20,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <link rel="stylesheet" href="../css/home.css">
-<style>
-.btn-book-now {
-    background-color: #ffb703 !important;
-    color: #212529 !important;
-    font-weight: 600 !important;
-    padding: 10px 25px !important;
-    font-size: 18px !important;
-    border: none !important;
-    border-radius: 50px !important;
-    box-shadow: 0 6px 18px rgba(255, 183, 3, 0.5) !important;
-    transition: all 0.3s ease-in-out !important;
-    display: inline-block !important;
-    margin-top: 25px;
-}
-
-.btn-book-now:hover {
-    background-color: #fca311 !important;
-    color: white !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 183, 3, 0.6);
-    text-decoration: none !important;
-}
-
-.modal-content {
-	border-radius: 20px;
-}
-</style>
 
 </head>
 
@@ -68,10 +41,10 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav mx-auto">
-				<a href="home.jsp" class="nav-item nav-link active">Home</a> <a
-					href="Aboutus.html" class="nav-item nav-link">About</a> <a
-					href="Services.html" class="nav-item nav-link">Services</a> <a
-					href="Contact.html" class="nav-item nav-link">Contact</a>
+				<a href="home.jsp" class="nav-item nav-link active">Home</a> 
+				<a href="aboutus.jsp" class="nav-item nav-link">About</a> 
+				<a href="services.jsp" class="nav-item nav-link">Services</a> 
+				<a href="contact.jsp" class="nav-item nav-link">Contact</a>
 			</div>
 			<!-- Login/Logout Button -->
 			<c:choose>
@@ -99,14 +72,16 @@
 			<c:choose>
 				<c:when test="${not empty loggedUser}">
 					<!-- User logged in: Go to booking page -->
-					<a href="<c:url value='/pages/cars.jsp' />" class="btn-book-now">
+					<a href="<c:url value='/pages/cars.jsp' />" class="book-now">
 						Book Now
 					</a>
 				</c:when>
 				<c:otherwise>
 					<!-- User not logged in: Show modal popup -->
-					<button type="button" class="btn-book-now" data-bs-toggle="modal"
+					<div class="book-now">
+						<button type="button"  data-bs-toggle="modal"
 						data-bs-target="#loginPopup">Book Now</button>
+					</div>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -375,8 +350,7 @@
 				<div class="col-md-4">
 					<h5>Contact Us</h5>
 					<p>
-						<i class="fas fa-map-marker-alt"></i> 123 Main Street, New York,
-						USA
+						<i class="fas fa-map-marker-alt"></i> City Vista, Kharadi, Pune 411014
 					</p>
 					<p>
 						<i class="fas fa-phone-alt"></i> +012 345 6789

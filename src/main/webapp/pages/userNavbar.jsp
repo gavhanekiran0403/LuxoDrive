@@ -1,5 +1,6 @@
 <%@page import="com.luxodrive.model.User"%>
 <%@page import="com.luxodrive.dao.UserOperation"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,6 +26,9 @@
     if(email != null && !email.isEmpty()){
         user = UserOperation.getUserByEmail(email);
     }
+    
+    User loggedUser = (User) session.getAttribute("loggedUser");
+	request.setAttribute("loggedUser", loggedUser);
 %>
 
 	<!-- Navbar start -->
@@ -38,14 +42,24 @@
   </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
-                <a href="userDashboard.jsp" class="nav-item nav-link active">Home</a>
-                <a href="cars.jsp" class="nav-item nav-link">Cars</a>
-                <a href="myBooking.jsp" class="nav-item nav-link">MyBookings</a>
-                <a href="services.jsp" class="nav-item nav-link">Services</a>
-                <a href="aboutus.jsp" class="nav-item nav-link">Aboutus</a>
-                <a href="contact.jsp" class="nav-item nav-link">Contact</a>
-                <a href="userNotification.jsp" class="nav-item nav-link">Notifications</a>
-            </div>
+    			<c:choose>
+    				<c:when test="${empty sessionScope.loggedUser}">
+        			<a href="home.jsp" class="nav-item nav-link active">Home</a>
+        			<a href="services.jsp" class="nav-item nav-link">Services</a>
+        			<a href="aboutus.jsp" class="nav-item nav-link">About Us</a>
+        			<a href="contact.jsp" class="nav-item nav-link">Contact</a>
+    			</c:when>
+
+    			<c:otherwise>
+        			<a href="userDashboard.jsp" class="nav-item nav-link active">Home</a>
+        			<a href="cars.jsp" class="nav-item nav-link">Cars</a>
+        			<a href="myBooking.jsp" class="nav-item nav-link">My Bookings</a>
+        			<a href="services.jsp" class="nav-item nav-link">Services</a>
+        			<a href="aboutus.jsp" class="nav-item nav-link">About Us</a>
+        			<a href="contact.jsp" class="nav-item nav-link">Contact</a>
+        			<a href="userNotification.jsp" class="nav-item nav-link">Notifications</a>
+           	</div>
+
            	<div class="d-flex align-items-center">
     			<% if(user != null){ %>
     				<a href="userProfile.jsp" class="username-badge me-3">
@@ -55,10 +69,12 @@
     				<a href="login.jsp" class="btn btn-outline-primary me-3">Login</a>
 				<% } %>
 
-            <a href="logout.jsp" class="logout-btn" onclick="return confirm('Are you sure you want to logout?');">
+            		<a href="logout.jsp" class="logout-btn" onclick="return confirm('Are you sure you want to logout?');">
                 Logout
             </a>
         </div>
+    </c:otherwise>
+</c:choose>
     </nav>
     
     <!-- Navbar end -->

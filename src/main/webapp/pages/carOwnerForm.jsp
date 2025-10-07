@@ -62,7 +62,7 @@
 					<div class="file-container">
 						<label>Aadhar Card Photo :</label>
 						<c:if test="${carOwner != null && carOwner.aadharImage != null }">
-							<img src="viewImage.jsp?id=${carOwner.ownerId}" 
+							<img src="viewImage.jsp?carOwnerId=${carOwner.ownerId}" 
                              alt="Aadhar Card" width="120" height="80"/>
 						</c:if>
 						<input type="file" name="aadharImage" accept="image/*">

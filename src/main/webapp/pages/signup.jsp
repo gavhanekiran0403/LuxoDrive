@@ -53,8 +53,9 @@
                     <label for="confirmPassword">Confirm Password</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Enter your confirm password" required />
                 </div>
-
-                <button type="submit">Sing Up</button>
+				<div class="btn-signup">
+					<button type="submit">Sing Up</button>
+				</div>
                 <p class="signup-link">Already have account? <a href="login.jsp">Log In</a></p>
             </form>
         </div>

@@ -44,9 +44,9 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required />
                 </div>
-
-                <button type="submit">Log In</button>
-
+				<div class="btn-login">
+					<button type="submit">Log In</button>
+				</div>
                 <p class="forgot-password"><a href="forgotpass.html">Forgot Password?</a></p>
 
                 <p class="signup-link">
