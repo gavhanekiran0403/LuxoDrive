@@ -47,7 +47,7 @@
 				<div class="btn-login">
 					<button type="submit">Log In</button>
 				</div>
-                <p class="forgot-password"><a href="forgotpass.html">Forgot Password?</a></p>
+                <!-- <p class="forgot-password"><a href="forgotpass.html">Forgot Password?</a></p> -->
 
                 <p class="signup-link">
                     Don't have an account? <a href="signup.jsp">Sign Up</a>

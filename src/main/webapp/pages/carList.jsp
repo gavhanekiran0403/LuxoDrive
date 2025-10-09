@@ -99,7 +99,7 @@
 		<% }else{ %>
 			<tbody>
 				<tr>
-					<td colspan="16">
+					<td colspan="17">
 						Cars not available.
 					</td>
 				</tr>

@@ -38,7 +38,7 @@
         		<c:when test="${empty accounts }">
         			<tbody>
         				<tr>
-        					<td>
+        					<td colspan="5">
         						Accounts details not available.
         					</td>
         				</tr>

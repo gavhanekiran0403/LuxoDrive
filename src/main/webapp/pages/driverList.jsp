@@ -49,7 +49,7 @@
         	<c:when test="${empty drivers }">
         		<tbody>
         			<tr>
-        				<td>
+        				<td colspan="10">
         					Drivers details not available.
         				</td>
         			</tr>

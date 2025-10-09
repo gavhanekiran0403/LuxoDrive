@@ -62,7 +62,7 @@
         		<c:when test="${empty bookings }">
         			<tbody>
         				<tr>
-        					<td>
+        					<td colspan="13">
         						Bookings details not available.
         					</td>
         				</tr>
